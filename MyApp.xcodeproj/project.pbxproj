@@ -16,6 +16,8 @@
 		01B7D9BD2BD5563A00CB8462 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D9BC2BD5563A00CB8462 /* AuthorizationViewController.swift */; };
 		01B7D9C02BD5572300CB8462 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D9BF2BD5572300CB8462 /* MainTabBarController.swift */; };
 		01B7D9C42BD55FBA00CB8462 /* extension + SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D9C32BD55FBA00CB8462 /* extension + SceneDelegate.swift */; };
+		01B7DA032BD5A89800CB8462 /* AuthorizantionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7DA022BD5A89800CB8462 /* AuthorizantionView.swift */; };
+		01B7DA052BD5AE7300CB8462 /* AuthorizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7DA042BD5AE7300CB8462 /* AuthorizationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		01B7D9BC2BD5563A00CB8462 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		01B7D9BF2BD5572300CB8462 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		01B7D9C32BD55FBA00CB8462 /* extension + SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension + SceneDelegate.swift"; sourceTree = "<group>"; };
+		01B7DA022BD5A89800CB8462 /* AuthorizantionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizantionView.swift; sourceTree = "<group>"; };
+		01B7DA042BD5AE7300CB8462 /* AuthorizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				01B7D9BC2BD5563A00CB8462 /* AuthorizationViewController.swift */,
+				01B7DA022BD5A89800CB8462 /* AuthorizantionView.swift */,
+				01B7DA042BD5AE7300CB8462 /* AuthorizationModel.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -199,6 +205,8 @@
 				01B7D9C02BD5572300CB8462 /* MainTabBarController.swift in Sources */,
 				01B7D9A22BD54EFD00CB8462 /* SceneDelegate.swift in Sources */,
 				01B7D9BD2BD5563A00CB8462 /* AuthorizationViewController.swift in Sources */,
+				01B7DA052BD5AE7300CB8462 /* AuthorizationModel.swift in Sources */,
+				01B7DA032BD5A89800CB8462 /* AuthorizantionView.swift in Sources */,
 				01B7D9BA2BD5538200CB8462 /* SplashViewController.swift in Sources */,
 				01B7D9C42BD55FBA00CB8462 /* extension + SceneDelegate.swift in Sources */,
 			);

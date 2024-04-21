@@ -43,7 +43,7 @@ class SplashViewController: UIViewController {
     
     private func makeInquiries() {
         activityIndicator.startAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.activityIndicator.stopAnimating()
             SceneDelegate.shared.rootViewController.switchToScreen(viewController: AuthorizationViewController())
         }
