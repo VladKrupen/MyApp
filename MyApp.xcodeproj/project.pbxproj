@@ -9,19 +9,27 @@
 /* Begin PBXBuildFile section */
 		01B7D9A02BD54EFD00CB8462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D99F2BD54EFD00CB8462 /* AppDelegate.swift */; };
 		01B7D9A22BD54EFD00CB8462 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D9A12BD54EFD00CB8462 /* SceneDelegate.swift */; };
-		01B7D9A42BD54EFD00CB8462 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D9A32BD54EFD00CB8462 /* ViewController.swift */; };
+		01B7D9A42BD54EFD00CB8462 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D9A32BD54EFD00CB8462 /* RootViewController.swift */; };
 		01B7D9A92BD54EFF00CB8462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B7D9A82BD54EFF00CB8462 /* Assets.xcassets */; };
 		01B7D9AC2BD54EFF00CB8462 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 01B7D9AB2BD54EFF00CB8462 /* Base */; };
+		01B7D9BA2BD5538200CB8462 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D9B92BD5538200CB8462 /* SplashViewController.swift */; };
+		01B7D9BD2BD5563A00CB8462 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D9BC2BD5563A00CB8462 /* AuthorizationViewController.swift */; };
+		01B7D9C02BD5572300CB8462 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D9BF2BD5572300CB8462 /* MainTabBarController.swift */; };
+		01B7D9C42BD55FBA00CB8462 /* extension + SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D9C32BD55FBA00CB8462 /* extension + SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		01B7D99C2BD54EFD00CB8462 /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B7D99F2BD54EFD00CB8462 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01B7D9A12BD54EFD00CB8462 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		01B7D9A32BD54EFD00CB8462 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		01B7D9A32BD54EFD00CB8462 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		01B7D9A82BD54EFF00CB8462 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01B7D9AB2BD54EFF00CB8462 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01B7D9AD2BD54EFF00CB8462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01B7D9B92BD5538200CB8462 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		01B7D9BC2BD5563A00CB8462 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		01B7D9BF2BD5572300CB8462 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		01B7D9C32BD55FBA00CB8462 /* extension + SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension + SceneDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +64,10 @@
 			children = (
 				01B7D9B32BD54FAC00CB8462 /* Application */,
 				01B7D9B42BD54FFC00CB8462 /* Resources */,
-				01B7D9A32BD54EFD00CB8462 /* ViewController.swift */,
+				01B7D9B82BD5535900CB8462 /* Splash screen */,
+				01B7D9BB2BD5560200CB8462 /* Authorization */,
+				01B7D9B52BD552F600CB8462 /* RootViewController */,
+				01B7D9BE2BD556D800CB8462 /* MainMyApp */,
 			);
 			path = MyApp;
 			sourceTree = "<group>";
@@ -66,6 +77,7 @@
 			children = (
 				01B7D99F2BD54EFD00CB8462 /* AppDelegate.swift */,
 				01B7D9A12BD54EFD00CB8462 /* SceneDelegate.swift */,
+				01B7D9C32BD55FBA00CB8462 /* extension + SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -78,6 +90,38 @@
 				01B7D9AD2BD54EFF00CB8462 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		01B7D9B52BD552F600CB8462 /* RootViewController */ = {
+			isa = PBXGroup;
+			children = (
+				01B7D9A32BD54EFD00CB8462 /* RootViewController.swift */,
+			);
+			path = RootViewController;
+			sourceTree = "<group>";
+		};
+		01B7D9B82BD5535900CB8462 /* Splash screen */ = {
+			isa = PBXGroup;
+			children = (
+				01B7D9B92BD5538200CB8462 /* SplashViewController.swift */,
+			);
+			path = "Splash screen";
+			sourceTree = "<group>";
+		};
+		01B7D9BB2BD5560200CB8462 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				01B7D9BC2BD5563A00CB8462 /* AuthorizationViewController.swift */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		01B7D9BE2BD556D800CB8462 /* MainMyApp */ = {
+			isa = PBXGroup;
+			children = (
+				01B7D9BF2BD5572300CB8462 /* MainTabBarController.swift */,
+			);
+			path = MainMyApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,9 +194,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01B7D9A42BD54EFD00CB8462 /* ViewController.swift in Sources */,
+				01B7D9A42BD54EFD00CB8462 /* RootViewController.swift in Sources */,
 				01B7D9A02BD54EFD00CB8462 /* AppDelegate.swift in Sources */,
+				01B7D9C02BD5572300CB8462 /* MainTabBarController.swift in Sources */,
 				01B7D9A22BD54EFD00CB8462 /* SceneDelegate.swift in Sources */,
+				01B7D9BD2BD5563A00CB8462 /* AuthorizationViewController.swift in Sources */,
+				01B7D9BA2BD5538200CB8462 /* SplashViewController.swift in Sources */,
+				01B7D9C42BD55FBA00CB8462 /* extension + SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
