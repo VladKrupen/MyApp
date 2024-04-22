@@ -10,6 +10,7 @@ import UIKit
 class AuthorizantionView: UIView {
     
     var closureButton: (() -> Void)?
+    var closureTextFields: ((String, String, String) -> Void)?
     
     private let textLabel: UILabel = {
         let textLabel = UILabel()
@@ -18,7 +19,6 @@ class AuthorizantionView: UIView {
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         return textLabel
     }()
-    
     
     private let nameField: UITextField = {
         let nameField = UITextField()
@@ -65,6 +65,7 @@ class AuthorizantionView: UIView {
         super.init(frame: frame)
         layoutElements()
         registrationButton.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
+        setupTextFields()
     }
     
     private func layoutElements() {
@@ -121,7 +122,35 @@ class AuthorizantionView: UIView {
         registrationButton.setTitle("Вход", for: .normal)
     }
     
+    private func setupTextFields() {
+        nameField.delegate = self
+        emailField.delegate = self
+        passwordField.delegate = self
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension AuthorizantionView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case nameField:
+            emailField.becomeFirstResponder()
+        case emailField:
+            passwordField.becomeFirstResponder()
+        case passwordField:
+            textField.resignFirstResponder()
+        default:
+            break
+        }
+        if let name = nameField.text,
+           let email = emailField.text,
+           let password = passwordField.text {
+            closureTextFields?(name, email, password)
+        }
+        return true
+    }
+}
+

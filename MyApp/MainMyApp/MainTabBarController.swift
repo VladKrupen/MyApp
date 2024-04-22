@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                print(error)
+            }
+        }
     }
 }

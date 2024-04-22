@@ -21,6 +21,7 @@ class AuthorizationViewController: UIViewController {
         super.viewDidLoad()
         layoutCustomView()
         buttonCustomViewTapped()
+        textFieldCustomViewShouldReturn()
     }
     
     private func layoutCustomView() {
@@ -37,6 +38,12 @@ class AuthorizationViewController: UIViewController {
     private func buttonCustomViewTapped() {
         customView.closureButton = { [weak self] in
             self?.model.changeView()
+        }
+    }
+    
+    private func textFieldCustomViewShouldReturn() {
+        customView.closureTextFields = { [weak self] name, email, password in
+            self?.model.userAuthorization(name: name, email: email, password: password)
         }
     }
 }

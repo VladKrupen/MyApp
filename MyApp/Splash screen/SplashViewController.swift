@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SplashViewController: UIViewController {
     
@@ -45,7 +46,13 @@ class SplashViewController: UIViewController {
         activityIndicator.startAnimating()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.activityIndicator.stopAnimating()
-            SceneDelegate.shared.rootViewController.switchToScreen(viewController: AuthorizationViewController())
+            Auth.auth().addStateDidChangeListener { auth, user in
+                if user == nil {
+                    SceneDelegate.shared.rootViewController.switchToScreen(viewController: AuthorizationViewController())
+                } else {
+                    SceneDelegate.shared.rootViewController.switchToScreen(viewController: MainTabBarController())
+                }
+            }
         }
     }
     
