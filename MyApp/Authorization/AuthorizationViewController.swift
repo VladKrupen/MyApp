@@ -15,7 +15,7 @@ class AuthorizationViewController: UIViewController {
         return customView
     }()
     
-    lazy var model: AuthorizationModel = AuthorizationModel(view: customView)
+    lazy var model: AuthorizationModel = AuthorizationModel(authorizationController: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,5 +45,21 @@ class AuthorizationViewController: UIViewController {
         customView.closureTextFields = { [weak self] name, email, password in
             self?.model.userAuthorization(name: name, email: email, password: password)
         }
+    }
+    
+    func isSignupFalse() {
+        customView.isSignupFalse()
+    }
+    
+    func isSignupTrue() {
+        customView.isSignupTrue()
+    }
+    
+    func showAlertAboutEmptyFields() {
+        present(customView.showAlertAboutEmptyFields(), animated: true)
+    }
+    
+    func showAlertIncorrectData() {
+        present(customView.showAlertIncorrectData(), animated: true)
     }
 }

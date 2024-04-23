@@ -10,18 +10,18 @@ import Firebase
 
 class AuthorizationModel {
     
-    private let view: AuthorizantionView
+    weak private var authorizationController: AuthorizationViewController?
     
-    init(view: AuthorizantionView) {
-        self.view = view
+    init(authorizationController: AuthorizationViewController?) {
+        self.authorizationController = authorizationController
     }
     
     private var signup: Bool = false {
         willSet {
             if !newValue {
-                view.isSignupFalse()
+                authorizationController?.isSignupFalse()
             } else {
-                view.isSignupTrue()
+                authorizationController?.isSignupTrue()
             }
         }
     }
@@ -49,15 +49,20 @@ class AuthorizationModel {
                 }
             }
         } else {
-            
+            authorizationController?.showAlertAboutEmptyFields()
         }
     }
     
     private func userLogin(email: String, password: String) {
         if !email.isEmpty && !password.isEmpty {
-            Auth.auth().signIn(withEmail: email, password: password)
+            Auth.auth().signIn(withEmail: email, password: password) { result, error in
+                if error != nil {
+                    print("Не верный пароль")
+                    self.authorizationController?.showAlertIncorrectData()
+                }
+            }
         } else {
-            
+            authorizationController?.showAlertAboutEmptyFields()
         }
     }
 }

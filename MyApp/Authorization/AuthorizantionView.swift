@@ -128,6 +128,20 @@ class AuthorizantionView: UIView {
         passwordField.delegate = self
     }
     
+    func showAlertAboutEmptyFields() -> UIAlertController {
+        let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Хорошо", style: .default)
+        alert.addAction(alertAction)
+        return alert
+    }
+    
+    func showAlertIncorrectData () -> UIAlertController {
+        let alert = UIAlertController(title: "Ошибка", message: "Неправильный логин или пароль", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Хорошо", style: .default)
+        alert.addAction(alertAction)
+        return alert
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
