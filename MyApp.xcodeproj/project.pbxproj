@@ -36,6 +36,10 @@
 		016F9E132BD6C87200DCC3AF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9E122BD6C87200DCC3AF /* FirebaseStorage */; };
 		016F9E152BD6C87200DCC3AF /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9E142BD6C87200DCC3AF /* FirebaseStorageCombine-Community */; };
 		01A66E222BDD4370000A4A09 /* CustomColor+enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E212BDD4370000A4A09 /* CustomColor+enum.swift */; };
+		01A66E242BDD4407000A4A09 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E232BDD4407000A4A09 /* SearchView.swift */; };
+		01A66E282BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E272BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift */; };
+		01A66E2A2BDD5EB9000A4A09 /* CellForCollectionImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E292BDD5EB9000A4A09 /* CellForCollectionImages.swift */; };
+		01A66E2C2BDD62F6000A4A09 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E2B2BDD62F6000A4A09 /* SearchModel.swift */; };
 		01AF429D2BD832340010C917 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF429C2BD832340010C917 /* ProfileViewController.swift */; };
 		01AF429F2BD96BED0010C917 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF429E2BD96BED0010C917 /* SearchViewController.swift */; };
 		01AF42A12BD96CD60010C917 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF42A02BD96CD60010C917 /* SavedViewController.swift */; };
@@ -55,6 +59,10 @@
 /* Begin PBXFileReference section */
 		016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		01A66E212BDD4370000A4A09 /* CustomColor+enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomColor+enum.swift"; sourceTree = "<group>"; };
+		01A66E232BDD4407000A4A09 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		01A66E272BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellForSearchView.swift; sourceTree = "<group>"; };
+		01A66E292BDD5EB9000A4A09 /* CellForCollectionImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellForCollectionImages.swift; sourceTree = "<group>"; };
+		01A66E2B2BDD62F6000A4A09 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		01AF429C2BD832340010C917 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		01AF429E2BD96BED0010C917 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		01AF42A02BD96CD60010C917 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +131,10 @@
 			isa = PBXGroup;
 			children = (
 				01AF429E2BD96BED0010C917 /* SearchViewController.swift */,
+				01A66E2B2BDD62F6000A4A09 /* SearchModel.swift */,
+				01A66E232BDD4407000A4A09 /* SearchView.swift */,
+				01A66E272BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift */,
+				01A66E292BDD5EB9000A4A09 /* CellForCollectionImages.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -327,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01A66E222BDD4370000A4A09 /* CustomColor+enum.swift in Sources */,
+				01A66E2A2BDD5EB9000A4A09 /* CellForCollectionImages.swift in Sources */,
 				01B7D9A42BD54EFD00CB8462 /* RootViewController.swift in Sources */,
 				01AF429F2BD96BED0010C917 /* SearchViewController.swift in Sources */,
 				01B7D9A02BD54EFD00CB8462 /* AppDelegate.swift in Sources */,
@@ -335,8 +348,11 @@
 				01AF429D2BD832340010C917 /* ProfileViewController.swift in Sources */,
 				01AF42A12BD96CD60010C917 /* SavedViewController.swift in Sources */,
 				01B7D9BD2BD5563A00CB8462 /* AuthorizationViewController.swift in Sources */,
+				01A66E2C2BDD62F6000A4A09 /* SearchModel.swift in Sources */,
 				01B7DA052BD5AE7300CB8462 /* AuthorizationModel.swift in Sources */,
+				01A66E242BDD4407000A4A09 /* SearchView.swift in Sources */,
 				01B7DA032BD5A89800CB8462 /* AuthorizantionView.swift in Sources */,
+				01A66E282BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift in Sources */,
 				01B7D9BA2BD5538200CB8462 /* SplashViewController.swift in Sources */,
 				01B7D9C42BD55FBA00CB8462 /* SceneDelegate+extension.swift in Sources */,
 			);
