@@ -46,6 +46,8 @@ class AuthorizationModel {
                         let reference = Database.database().reference().child("users")
                         reference.child(result.user.uid).updateChildValues(["name" : name, "email" : email])
                     }
+                } else {
+                    self.authorizationController?.showAlertIncorrectEmail()
                 }
             }
         } else {

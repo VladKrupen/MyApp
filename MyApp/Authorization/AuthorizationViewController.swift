@@ -62,4 +62,8 @@ class AuthorizationViewController: UIViewController {
     func showAlertIncorrectData() {
         present(customView.showAlertIncorrectData(), animated: true)
     }
+    
+    func showAlertIncorrectEmail() {
+        present(customView.showAlertIncorrectEmail(), animated: true)
+    }
 }

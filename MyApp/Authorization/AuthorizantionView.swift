@@ -129,16 +129,26 @@ class AuthorizantionView: UIView {
     }
     
     func showAlertAboutEmptyFields() -> UIAlertController {
-        let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля.", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Хорошо", style: .default)
         alert.addAction(alertAction)
         return alert
     }
     
     func showAlertIncorrectData () -> UIAlertController {
-        let alert = UIAlertController(title: "Ошибка", message: "Неправильный логин или пароль", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Ошибка", message: "Неправильный логин или пароль.", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Хорошо", style: .default)
         alert.addAction(alertAction)
+        emailField.text = ""
+        passwordField.text = ""
+        return alert
+    }
+    
+    func showAlertIncorrectEmail () -> UIAlertController {
+        let alert = UIAlertController(title: "Ошибка", message: "Некорректный адрес электронный почты.", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Хорошо", style: .default)
+        alert.addAction(alertAction)
+        emailField.text = ""
         return alert
     }
     
