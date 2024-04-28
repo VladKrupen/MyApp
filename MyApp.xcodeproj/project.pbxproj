@@ -37,6 +37,9 @@
 		016F9E152BD6C87200DCC3AF /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9E142BD6C87200DCC3AF /* FirebaseStorageCombine-Community */; };
 		0199F9E52BDE886E00DD81FE /* AdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0199F9E42BDE886E00DD81FE /* AdViewController.swift */; };
 		0199F9E72BDE8C9400DD81FE /* AdCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0199F9E62BDE8C9400DD81FE /* AdCreationViewController.swift */; };
+		0199F9E92BDE990B00DD81FE /* AdCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0199F9E82BDE990B00DD81FE /* AdCreationView.swift */; };
+		0199F9EC2BDEA72D00DD81FE /* PhotoSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0199F9EB2BDEA72D00DD81FE /* PhotoSelectionCell.swift */; };
+		0199F9EE2BDEB87900DD81FE /* CellForPhotoSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0199F9ED2BDEB87800DD81FE /* CellForPhotoSelectionCell.swift */; };
 		01A66E222BDD4370000A4A09 /* CustomColor+enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E212BDD4370000A4A09 /* CustomColor+enum.swift */; };
 		01A66E242BDD4407000A4A09 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E232BDD4407000A4A09 /* SearchView.swift */; };
 		01A66E282BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E272BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift */; };
@@ -62,6 +65,9 @@
 		016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0199F9E42BDE886E00DD81FE /* AdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
 		0199F9E62BDE8C9400DD81FE /* AdCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCreationViewController.swift; sourceTree = "<group>"; };
+		0199F9E82BDE990B00DD81FE /* AdCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCreationView.swift; sourceTree = "<group>"; };
+		0199F9EB2BDEA72D00DD81FE /* PhotoSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectionCell.swift; sourceTree = "<group>"; };
+		0199F9ED2BDEB87800DD81FE /* CellForPhotoSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellForPhotoSelectionCell.swift; sourceTree = "<group>"; };
 		01A66E212BDD4370000A4A09 /* CustomColor+enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomColor+enum.swift"; sourceTree = "<group>"; };
 		01A66E232BDD4407000A4A09 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		01A66E272BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellForSearchView.swift; sourceTree = "<group>"; };
@@ -147,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				0199F9E62BDE8C9400DD81FE /* AdCreationViewController.swift */,
+				0199F9E82BDE990B00DD81FE /* AdCreationView.swift */,
+				0199F9EA2BDEA6C700DD81FE /* Cell for AdCreationView */,
 			);
 			path = "Ad Creation Controller";
 			sourceTree = "<group>";
@@ -157,6 +165,15 @@
 				0199F9E42BDE886E00DD81FE /* AdViewController.swift */,
 			);
 			path = AdController;
+			sourceTree = "<group>";
+		};
+		0199F9EA2BDEA6C700DD81FE /* Cell for AdCreationView */ = {
+			isa = PBXGroup;
+			children = (
+				0199F9EB2BDEA72D00DD81FE /* PhotoSelectionCell.swift */,
+				0199F9ED2BDEB87800DD81FE /* CellForPhotoSelectionCell.swift */,
+			);
+			path = "Cell for AdCreationView";
 			sourceTree = "<group>";
 		};
 		01A66E1D2BDD420F000A4A09 /* Saved */ = {
@@ -377,9 +394,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				01A66E222BDD4370000A4A09 /* CustomColor+enum.swift in Sources */,
+				0199F9EC2BDEA72D00DD81FE /* PhotoSelectionCell.swift in Sources */,
 				01A66E2A2BDD5EB9000A4A09 /* CellForCollectionImages.swift in Sources */,
+				0199F9EE2BDEB87900DD81FE /* CellForPhotoSelectionCell.swift in Sources */,
 				01B7D9A42BD54EFD00CB8462 /* RootViewController.swift in Sources */,
 				01AF429F2BD96BED0010C917 /* SearchViewController.swift in Sources */,
+				0199F9E92BDE990B00DD81FE /* AdCreationView.swift in Sources */,
 				01B7D9A02BD54EFD00CB8462 /* AppDelegate.swift in Sources */,
 				01B7D9C02BD5572300CB8462 /* MainTabBarController.swift in Sources */,
 				01B7D9A22BD54EFD00CB8462 /* SceneDelegate.swift in Sources */,
