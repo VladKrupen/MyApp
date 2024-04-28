@@ -9,6 +9,8 @@ import UIKit
 
 class SearchView: UIView {
     
+    var closureSelectedItemFromCollectionView: ((UICollectionView, IndexPath) -> Void)?
+    
     private var collectionView: UICollectionView!
     
     override init(frame: CGRect) {
@@ -21,6 +23,7 @@ class SearchView: UIView {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(CollectionViewCellForSearchView.self, forCellWithReuseIdentifier: CollectionViewCellForSearchView.description())
     }
     
@@ -37,9 +40,9 @@ class SearchView: UIView {
     
     private func getCompositionLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, _ in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
             let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             return section
@@ -58,8 +61,14 @@ extension SearchView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellForSearchView.description(), for: indexPath) as! CollectionViewCellForSearchView
-        
+        cell.configureCollectionViewCellForSearchView(numberOfRooms: "2", price: "250", geolocation: "Республика Беларусь, город Минск, Проспект независимости 58")
         return cell
+    }
+}
+
+extension SearchView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        closureSelectedItemFromCollectionView?(collectionView, indexPath)
     }
 }
 

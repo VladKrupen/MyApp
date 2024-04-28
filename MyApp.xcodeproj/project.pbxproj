@@ -35,6 +35,8 @@
 		016F9E112BD6C87200DCC3AF /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9E102BD6C87200DCC3AF /* FirebaseRemoteConfigSwift */; };
 		016F9E132BD6C87200DCC3AF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9E122BD6C87200DCC3AF /* FirebaseStorage */; };
 		016F9E152BD6C87200DCC3AF /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9E142BD6C87200DCC3AF /* FirebaseStorageCombine-Community */; };
+		0199F9E52BDE886E00DD81FE /* AdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0199F9E42BDE886E00DD81FE /* AdViewController.swift */; };
+		0199F9E72BDE8C9400DD81FE /* AdCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0199F9E62BDE8C9400DD81FE /* AdCreationViewController.swift */; };
 		01A66E222BDD4370000A4A09 /* CustomColor+enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E212BDD4370000A4A09 /* CustomColor+enum.swift */; };
 		01A66E242BDD4407000A4A09 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E232BDD4407000A4A09 /* SearchView.swift */; };
 		01A66E282BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E272BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift */; };
@@ -58,6 +60,8 @@
 
 /* Begin PBXFileReference section */
 		016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0199F9E42BDE886E00DD81FE /* AdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
+		0199F9E62BDE8C9400DD81FE /* AdCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCreationViewController.swift; sourceTree = "<group>"; };
 		01A66E212BDD4370000A4A09 /* CustomColor+enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomColor+enum.swift"; sourceTree = "<group>"; };
 		01A66E232BDD4407000A4A09 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		01A66E272BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellForSearchView.swift; sourceTree = "<group>"; };
@@ -119,6 +123,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0199F9E02BDE702500DD81FE /* Cells for SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				01A66E272BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift */,
+				01A66E292BDD5EB9000A4A09 /* CellForCollectionImages.swift */,
+			);
+			path = "Cells for SearchView";
+			sourceTree = "<group>";
+		};
+		0199F9E12BDE874900DD81FE /* Search Controller */ = {
+			isa = PBXGroup;
+			children = (
+				01AF429E2BD96BED0010C917 /* SearchViewController.swift */,
+				01A66E2B2BDD62F6000A4A09 /* SearchModel.swift */,
+				01A66E232BDD4407000A4A09 /* SearchView.swift */,
+				0199F9E02BDE702500DD81FE /* Cells for SearchView */,
+			);
+			path = "Search Controller";
+			sourceTree = "<group>";
+		};
+		0199F9E22BDE877C00DD81FE /* Ad Creation Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0199F9E62BDE8C9400DD81FE /* AdCreationViewController.swift */,
+			);
+			path = "Ad Creation Controller";
+			sourceTree = "<group>";
+		};
+		0199F9E32BDE884B00DD81FE /* AdController */ = {
+			isa = PBXGroup;
+			children = (
+				0199F9E42BDE886E00DD81FE /* AdViewController.swift */,
+			);
+			path = AdController;
+			sourceTree = "<group>";
+		};
 		01A66E1D2BDD420F000A4A09 /* Saved */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,11 +170,9 @@
 		01A66E1E2BDD4231000A4A09 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				01AF429E2BD96BED0010C917 /* SearchViewController.swift */,
-				01A66E2B2BDD62F6000A4A09 /* SearchModel.swift */,
-				01A66E232BDD4407000A4A09 /* SearchView.swift */,
-				01A66E272BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift */,
-				01A66E292BDD5EB9000A4A09 /* CellForCollectionImages.swift */,
+				0199F9E12BDE874900DD81FE /* Search Controller */,
+				0199F9E32BDE884B00DD81FE /* AdController */,
+				0199F9E22BDE877C00DD81FE /* Ad Creation Controller */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -351,8 +389,10 @@
 				01A66E2C2BDD62F6000A4A09 /* SearchModel.swift in Sources */,
 				01B7DA052BD5AE7300CB8462 /* AuthorizationModel.swift in Sources */,
 				01A66E242BDD4407000A4A09 /* SearchView.swift in Sources */,
+				0199F9E72BDE8C9400DD81FE /* AdCreationViewController.swift in Sources */,
 				01B7DA032BD5A89800CB8462 /* AuthorizantionView.swift in Sources */,
 				01A66E282BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift in Sources */,
+				0199F9E52BDE886E00DD81FE /* AdViewController.swift in Sources */,
 				01B7D9BA2BD5538200CB8462 /* SplashViewController.swift in Sources */,
 				01B7D9C42BD55FBA00CB8462 /* SceneDelegate+extension.swift in Sources */,
 			);

@@ -9,7 +9,7 @@ import UIKit
 
 class CollectionViewCellForSearchView: UICollectionViewCell {
     
-    var model: SearchModel = SearchModel()
+    private var model: SearchModel = SearchModel()
     
     private var collectionViewImages: UICollectionView!
     
@@ -19,6 +19,39 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
         pageControl.currentPageIndicatorTintColor = .white
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
+    }()
+    
+    private let numberOfRoomsLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let pricaLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let geolocationLabel: UILabel = {
+        let label = UILabel()
+//        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        label.textColor = .gray
+        label.numberOfLines = 3
+        label.lineBreakMode = .byWordWrapping
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let verticalStack: UIStackView = {
+        let verticalStack = UIStackView()
+        verticalStack.axis = .vertical
+        verticalStack.spacing = 5
+        verticalStack.translatesAutoresizingMaskIntoConstraints = false
+        return verticalStack
     }()
     
     override init(frame: CGRect) {
@@ -46,6 +79,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
     private func layoutElements() {
         layoutCollectionViewImages()
         layoutPageControl()
+        layoutVerticalStack()
     }
     
     private func layoutCollectionViewImages() {
@@ -54,7 +88,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
         NSLayoutConstraint.activate([
             collectionViewImages.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             collectionViewImages.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            collectionViewImages.widthAnchor.constraint(equalToConstant: 300),
+            collectionViewImages.widthAnchor.constraint(equalToConstant: 330),
             collectionViewImages.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
@@ -66,7 +100,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
             let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .groupPagingCentered
+            section.orthogonalScrollingBehavior = .groupPaging
             return section
         }
     }
@@ -85,9 +119,30 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
         pageControl.addTarget(self, action: #selector(pageControlValueChanged), for: .valueChanged)
     }
     
+    private func layoutVerticalStack() {
+        verticalStack.addArrangedSubview(numberOfRoomsLabel)
+        verticalStack.addArrangedSubview(pricaLabel)
+        verticalStack.addArrangedSubview(geolocationLabel)
+        
+        contentView.addSubview(verticalStack)
+        
+        NSLayoutConstraint.activate([
+            verticalStack.topAnchor.constraint(equalTo: collectionViewImages.bottomAnchor, constant: 10),
+            verticalStack.leadingAnchor.constraint(equalTo: collectionViewImages.leadingAnchor),
+            verticalStack.trailingAnchor.constraint(equalTo: collectionViewImages.trailingAnchor),
+            verticalStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
+    
     @objc private func pageControlValueChanged(_ sender: UIPageControl) {
         let currentPage = sender.currentPage
         collectionViewImages.scrollToItem(at: IndexPath(item: currentPage, section: 0), at: .centeredHorizontally, animated: true)
+    }
+    
+    func configureCollectionViewCellForSearchView(numberOfRooms: String, price: String, geolocation: String) {
+        numberOfRoomsLabel.text = "Комнат: " + numberOfRooms
+        pricaLabel.text = price + "$"
+        geolocationLabel.text = "Адрес: " + geolocation
     }
     
     required init?(coder: NSCoder) {
@@ -97,7 +152,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
 
 extension CollectionViewCellForSearchView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        return model.getImages().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -108,7 +163,9 @@ extension CollectionViewCellForSearchView: UICollectionViewDataSource {
 }
 
 extension CollectionViewCellForSearchView: UICollectionViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.width)
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let visibleIndexPath = collectionView.indexPathsForVisibleItems.first {
+            pageControl.currentPage = visibleIndexPath.item
+        }
     }
 }
