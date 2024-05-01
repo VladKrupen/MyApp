@@ -38,7 +38,6 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
     
     private let geolocationLabel: UILabel = {
         let label = UILabel()
-//        label.font = UIFont.systemFont(ofSize: 15)
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
         label.textColor = .gray
         label.numberOfLines = 3
@@ -117,7 +116,6 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
     
     private func setupPageControl() {
         pageControl.numberOfPages = model.getImages().count
-//        pageControl.addTarget(self, action: #selector(pageControlValueChanged), for: .valueChanged)
     }
     
     private func layoutVerticalStack() {
@@ -134,11 +132,6 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
             verticalStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
-    
-//    @objc private func pageControlValueChanged(_ sender: UIPageControl) {
-//        let currentPage = sender.currentPage
-//        collectionViewImages.scrollToItem(at: IndexPath(item: currentPage, section: 0), at: .centeredHorizontally, animated: true)
-//    }
     
     func configureCollectionViewCellForSearchView(numberOfRooms: String, price: String, geolocation: String) {
         numberOfRoomsLabel.text = "Комнат: " + numberOfRooms

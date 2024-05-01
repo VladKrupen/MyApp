@@ -36,6 +36,30 @@ class DescriptionCell: UICollectionViewCell {
         return stack
     }()
     
+    private let priceField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Цена в $"
+        textField.keyboardType = .decimalPad
+        textField.borderStyle = .roundedRect
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 7
+        textField.layer.borderColor = CustomColor.customBlue.cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let numberOfRoomsField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Количество комант"
+        textField.keyboardType = .numberPad
+        textField.borderStyle = .roundedRect
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 7
+        textField.layer.borderColor = CustomColor.customBlue.cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
     private let geolocationField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Местоположение"
@@ -61,6 +85,7 @@ class DescriptionCell: UICollectionViewCell {
     private let emailField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email"
+        textField.keyboardType = .emailAddress
         textField.borderStyle = .roundedRect
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 7
@@ -72,6 +97,7 @@ class DescriptionCell: UICollectionViewCell {
     private let numberField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "+375"
+        textField.keyboardType = .phonePad
         textField.borderStyle = .roundedRect
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 7
@@ -124,6 +150,8 @@ class DescriptionCell: UICollectionViewCell {
     }
     
     private func layoutStackTextField() {
+        stackTextField.addArrangedSubview(priceField)
+        stackTextField.addArrangedSubview(numberOfRoomsField)
         stackTextField.addArrangedSubview(geolocationField)
         stackTextField.addArrangedSubview(nameField)
         stackTextField.addArrangedSubview(emailField)
