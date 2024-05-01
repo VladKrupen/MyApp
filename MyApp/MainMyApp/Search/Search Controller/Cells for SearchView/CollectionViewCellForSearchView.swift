@@ -17,6 +17,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
         let pageControl = UIPageControl()
         pageControl.pageIndicatorTintColor = .lightGray
         pageControl.currentPageIndicatorTintColor = .white
+        pageControl.isEnabled = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
     }()
@@ -98,7 +99,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .groupPaging
             return section
@@ -116,7 +117,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
     
     private func setupPageControl() {
         pageControl.numberOfPages = model.getImages().count
-        pageControl.addTarget(self, action: #selector(pageControlValueChanged), for: .valueChanged)
+//        pageControl.addTarget(self, action: #selector(pageControlValueChanged), for: .valueChanged)
     }
     
     private func layoutVerticalStack() {
@@ -134,10 +135,10 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
         ])
     }
     
-    @objc private func pageControlValueChanged(_ sender: UIPageControl) {
-        let currentPage = sender.currentPage
-        collectionViewImages.scrollToItem(at: IndexPath(item: currentPage, section: 0), at: .centeredHorizontally, animated: true)
-    }
+//    @objc private func pageControlValueChanged(_ sender: UIPageControl) {
+//        let currentPage = sender.currentPage
+//        collectionViewImages.scrollToItem(at: IndexPath(item: currentPage, section: 0), at: .centeredHorizontally, animated: true)
+//    }
     
     func configureCollectionViewCellForSearchView(numberOfRooms: String, price: String, geolocation: String) {
         numberOfRoomsLabel.text = "Комнат: " + numberOfRooms
