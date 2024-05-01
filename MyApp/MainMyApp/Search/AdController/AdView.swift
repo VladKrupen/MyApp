@@ -143,7 +143,7 @@ In iOS 6 and later, assigning a new value to this property also replaces the val
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(CellForImages.self, forCellWithReuseIdentifier: CellForImages.description())
+        collectionView.register(CellForImages.self, forCellWithReuseIdentifier: String(describing: CellForImages.self))
     }
     
     private func getCompositionLayout() -> UICollectionViewCompositionalLayout {
@@ -232,7 +232,7 @@ extension AdView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellForImages.description(), for: indexPath) as! CellForImages
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CellForImages.self), for: indexPath) as! CellForImages
         cell.imageView.image = model.getImages()[indexPath.item]
         return cell
     }

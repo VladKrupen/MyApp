@@ -41,6 +41,7 @@ class AuthorizantionView: UIView {
         let passwordField = UITextField()
         passwordField.placeholder = "Пароль"
         passwordField.borderStyle = .roundedRect
+        passwordField.textContentType = .oneTimeCode
         passwordField.isSecureTextEntry = true
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         return passwordField

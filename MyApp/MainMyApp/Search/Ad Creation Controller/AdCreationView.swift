@@ -9,8 +9,12 @@ import UIKit
 
 class AdCreationView: UIView {
     
-    private var collectionView: UICollectionView!
+    var closureImageViewTapped: (() -> Void)?
     
+    var selectionImages: [UIImage] = []
+    
+    var collectionView: UICollectionView!
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupElements()
@@ -30,8 +34,8 @@ class AdCreationView: UIView {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
-        collectionView.register(PhotoSelectionCell.self, forCellWithReuseIdentifier: PhotoSelectionCell.description())
-        collectionView.register(DescriptionCell.self, forCellWithReuseIdentifier: DescriptionCell.description())
+        collectionView.register(PhotoSelectionCell.self, forCellWithReuseIdentifier: String(describing: PhotoSelectionCell.self))
+        collectionView.register(DescriptionCell.self, forCellWithReuseIdentifier: String(describing: DescriptionCell.self))
     }
     
     private func getCompositionLayout() -> UICollectionViewCompositionalLayout {
@@ -108,7 +112,11 @@ extension AdCreationView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 7
+            if selectionImages.isEmpty {
+                return 1
+            } else {
+                return selectionImages.count
+            }
         case 1:
             return 1
         default:
@@ -119,17 +127,22 @@ extension AdCreationView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoSelectionCell.description(), for: indexPath) as! PhotoSelectionCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotoSelectionCell.self), for: indexPath) as! PhotoSelectionCell
+            cell.closureImageViewTapped = { [weak self] in
+                guard self != nil else { return }
+                self?.closureImageViewTapped?()
+            }
+            if !selectionImages.isEmpty {
+                cell.configureImageView(image: selectionImages[indexPath.item])
+            } else {
+                cell.configureImageView(image: UIImage(systemName: "camera")!)
+            }
             return cell
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DescriptionCell.description(), for: indexPath) as! DescriptionCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: DescriptionCell.self), for: indexPath) as! DescriptionCell
             return cell
         default:
             fatalError("Ошибка создания ячеек")
         }
     }
 }
-
-
-
-

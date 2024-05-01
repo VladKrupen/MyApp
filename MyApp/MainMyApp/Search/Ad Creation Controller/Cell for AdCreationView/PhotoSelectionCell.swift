@@ -9,14 +9,16 @@ import UIKit
 
 class PhotoSelectionCell: UICollectionViewCell {
     
-    let imageView: UIImageView = {
+    var closureImageViewTapped: (() -> Void)?
+    
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(systemName: "camera")
         imageView.tintColor = .white
         imageView.backgroundColor = CustomColor.customBlue
         imageView.layer.cornerRadius = 10
+        imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -24,6 +26,7 @@ class PhotoSelectionCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layoutImageView()
+        setupTapGestureForImageView()
     }
     
     private func layoutImageView() {
@@ -37,6 +40,19 @@ class PhotoSelectionCell: UICollectionViewCell {
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
+    }
+    
+    private func setupTapGestureForImageView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        imageView.addGestureRecognizer(tapGesture)
+    }
+    
+    func configureImageView(image: UIImage) {
+        imageView.image = image
+    }
+    
+    @objc private func imageViewTapped() {
+        closureImageViewTapped?()
     }
     
     required init?(coder: NSCoder) {

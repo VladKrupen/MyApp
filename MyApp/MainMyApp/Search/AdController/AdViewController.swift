@@ -9,7 +9,7 @@ import UIKit
 
 class AdViewController: UIViewController {
     
-    private let adView: UIView = {
+    private let adView: AdView = {
         let adView = AdView()
         adView.translatesAutoresizingMaskIntoConstraints = false
         return adView

@@ -61,6 +61,7 @@
 		01B7D9C42BD55FBA00CB8462 /* SceneDelegate+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7D9C32BD55FBA00CB8462 /* SceneDelegate+extension.swift */; };
 		01B7DA032BD5A89800CB8462 /* AuthorizantionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7DA022BD5A89800CB8462 /* AuthorizantionView.swift */; };
 		01B7DA052BD5AE7300CB8462 /* AuthorizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B7DA042BD5AE7300CB8462 /* AuthorizationModel.swift */; };
+		01FCA7932BE2972C0093939C /* AdCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCA7922BE2972C0093939C /* AdCreationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		01B7D9C32BD55FBA00CB8462 /* SceneDelegate+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+extension.swift"; sourceTree = "<group>"; };
 		01B7DA022BD5A89800CB8462 /* AuthorizantionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizantionView.swift; sourceTree = "<group>"; };
 		01B7DA042BD5AE7300CB8462 /* AuthorizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationModel.swift; sourceTree = "<group>"; };
+		01FCA7922BE2972C0093939C /* AdCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCreationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				0199F9E62BDE8C9400DD81FE /* AdCreationViewController.swift */,
+				01FCA7922BE2972C0093939C /* AdCreationModel.swift */,
 				0199F9E82BDE990B00DD81FE /* AdCreationView.swift */,
 				0199F9EA2BDEA6C700DD81FE /* Cell for AdCreationView */,
 			);
@@ -430,6 +433,7 @@
 				01A66E282BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift in Sources */,
 				0199F9E52BDE886E00DD81FE /* AdViewController.swift in Sources */,
 				01B7D9BA2BD5538200CB8462 /* SplashViewController.swift in Sources */,
+				01FCA7932BE2972C0093939C /* AdCreationModel.swift in Sources */,
 				01B7D9C42BD55FBA00CB8462 /* SceneDelegate+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

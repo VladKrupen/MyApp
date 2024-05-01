@@ -24,7 +24,7 @@ class SearchView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(CollectionViewCellForSearchView.self, forCellWithReuseIdentifier: CollectionViewCellForSearchView.description())
+        collectionView.register(CollectionViewCellForSearchView.self, forCellWithReuseIdentifier: String(describing: CollectionViewCellForSearchView.self))
     }
     
     private func layoutCollectionView() {
@@ -60,7 +60,7 @@ extension SearchView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellForSearchView.description(), for: indexPath) as! CollectionViewCellForSearchView
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CollectionViewCellForSearchView.self), for: indexPath) as! CollectionViewCellForSearchView
         cell.configureCollectionViewCellForSearchView(numberOfRooms: "2", price: "250", geolocation: "Республика Беларусь, город Минск, Проспект независимости 58")
         return cell
     }

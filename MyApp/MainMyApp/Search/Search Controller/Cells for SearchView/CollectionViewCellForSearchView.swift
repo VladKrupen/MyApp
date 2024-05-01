@@ -68,7 +68,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
         collectionViewImages.isPagingEnabled = true
         collectionViewImages.dataSource = self
         collectionViewImages.delegate = self
-        collectionViewImages.register(CellForCollectionImages.self, forCellWithReuseIdentifier: CellForCollectionImages.description())
+        collectionViewImages.register(CellForCollectionImages.self, forCellWithReuseIdentifier: String(describing: CellForCollectionImages.self))
     }
     
     private func setupElements() {
@@ -150,7 +150,7 @@ extension CollectionViewCellForSearchView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellForCollectionImages.description(), for: indexPath) as! CellForCollectionImages
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CellForCollectionImages.self), for: indexPath) as! CellForCollectionImages
         cell.imageView.image = model.getImages()[indexPath.item]
         return cell
     }
