@@ -45,6 +45,8 @@
 		01A66E282BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E272BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift */; };
 		01A66E2A2BDD5EB9000A4A09 /* CellForCollectionImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E292BDD5EB9000A4A09 /* CellForCollectionImages.swift */; };
 		01A66E2C2BDD62F6000A4A09 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A66E2B2BDD62F6000A4A09 /* SearchModel.swift */; };
+		01A9E1322BE239080088E58E /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A9E1312BE239080088E58E /* AdView.swift */; };
+		01A9E1552BE2403B0088E58E /* CellForImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A9E1542BE2403B0088E58E /* CellForImages.swift */; };
 		01AF429D2BD832340010C917 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF429C2BD832340010C917 /* ProfileViewController.swift */; };
 		01AF429F2BD96BED0010C917 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF429E2BD96BED0010C917 /* SearchViewController.swift */; };
 		01AF42A12BD96CD60010C917 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF42A02BD96CD60010C917 /* SavedViewController.swift */; };
@@ -73,6 +75,8 @@
 		01A66E272BDD55C5000A4A09 /* CollectionViewCellForSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellForSearchView.swift; sourceTree = "<group>"; };
 		01A66E292BDD5EB9000A4A09 /* CellForCollectionImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellForCollectionImages.swift; sourceTree = "<group>"; };
 		01A66E2B2BDD62F6000A4A09 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		01A9E1312BE239080088E58E /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
+		01A9E1542BE2403B0088E58E /* CellForImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellForImages.swift; sourceTree = "<group>"; };
 		01AF429C2BD832340010C917 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		01AF429E2BD96BED0010C917 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		01AF42A02BD96CD60010C917 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				0199F9E42BDE886E00DD81FE /* AdViewController.swift */,
+				01A9E1312BE239080088E58E /* AdView.swift */,
+				01A9E1532BE2401B0088E58E /* Cell for AdView */,
 			);
 			path = AdController;
 			sourceTree = "<group>";
@@ -200,6 +206,14 @@
 				01AF429C2BD832340010C917 /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		01A9E1532BE2401B0088E58E /* Cell for AdView */ = {
+			isa = PBXGroup;
+			children = (
+				01A9E1542BE2403B0088E58E /* CellForImages.swift */,
+			);
+			path = "Cell for AdView";
 			sourceTree = "<group>";
 		};
 		01B7D9932BD54EFD00CB8462 = {
@@ -404,8 +418,10 @@
 				01B7D9C02BD5572300CB8462 /* MainTabBarController.swift in Sources */,
 				01B7D9A22BD54EFD00CB8462 /* SceneDelegate.swift in Sources */,
 				01AF429D2BD832340010C917 /* ProfileViewController.swift in Sources */,
+				01A9E1552BE2403B0088E58E /* CellForImages.swift in Sources */,
 				01AF42A12BD96CD60010C917 /* SavedViewController.swift in Sources */,
 				01B7D9BD2BD5563A00CB8462 /* AuthorizationViewController.swift in Sources */,
+				01A9E1322BE239080088E58E /* AdView.swift in Sources */,
 				01A66E2C2BDD62F6000A4A09 /* SearchModel.swift in Sources */,
 				01B7DA052BD5AE7300CB8462 /* AuthorizationModel.swift in Sources */,
 				01A66E242BDD4407000A4A09 /* SearchView.swift in Sources */,

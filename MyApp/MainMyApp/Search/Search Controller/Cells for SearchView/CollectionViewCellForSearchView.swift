@@ -29,7 +29,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
         return label
     }()
     
-    private let pricaLabel: UILabel = {
+    private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -120,7 +120,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
     
     private func layoutVerticalStack() {
         verticalStack.addArrangedSubview(numberOfRoomsLabel)
-        verticalStack.addArrangedSubview(pricaLabel)
+        verticalStack.addArrangedSubview(priceLabel)
         verticalStack.addArrangedSubview(geolocationLabel)
         
         contentView.addSubview(verticalStack)
@@ -135,7 +135,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
     
     func configureCollectionViewCellForSearchView(numberOfRooms: String, price: String, geolocation: String) {
         numberOfRoomsLabel.text = "Комнат: " + numberOfRooms
-        pricaLabel.text = price + "$"
+        priceLabel.text = price + "$"
         geolocationLabel.text = "Адрес: " + geolocation
     }
     
