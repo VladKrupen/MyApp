@@ -6,28 +6,37 @@
 //
 
 import UIKit
-import Firebase
 
 class ProfileViewController: UIViewController {
     
-    private let logoutButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Logout", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private let profileView: ProfileView = {
+        let profileView = ProfileView()
+        profileView.translatesAutoresizingMaskIntoConstraints = false
+        return profileView
     }()
+    
+    lazy var model = ProfileModel(profileViewController: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(logoutButton)
-        NSLayoutConstraint.activate([
-            logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoutButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-        logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+        layoutProfileView()
+        signOutButtonTapped()
     }
     
-    @objc func logoutButtonTapped(_ sender: UIButton) {
-        try? Auth.auth().signOut()
+    private func layoutProfileView() {
+        view.addSubview(profileView)
+        
+        NSLayoutConstraint.activate([
+            profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            profileView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            profileView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+    }
+    
+    private func signOutButtonTapped() {
+        profileView.closureSignOutButton = { [weak self] in
+            self?.model.signOutProfile()
+        }
     }
 }
