@@ -15,11 +15,14 @@ class SearchViewController: UIViewController {
         return searchView
     }()
     
+    lazy var model = SearchModel(searchViewController: self)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItem()
         layoutSearchView()
         selectedItemFromCollectionView()
+        likeButtonTapped()
     }
     
     private func layoutSearchView() {
@@ -45,6 +48,18 @@ class SearchViewController: UIViewController {
             guard self != nil else { return }
             let adViewController = AdViewController()
             self?.navigationController?.pushViewController(adViewController, animated: false)
+        }
+    }
+    
+    private func likeButtonTapped() {
+        searchView.closureLikeButton = { [weak self] button, indexPath in
+            if self!.model.like {
+                button.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            } else {
+                button.setImage(UIImage(systemName: "heart"), for: .normal)
+            }
+            print(indexPath.row)
+            self!.model.changeLikeButton()
         }
     }
     

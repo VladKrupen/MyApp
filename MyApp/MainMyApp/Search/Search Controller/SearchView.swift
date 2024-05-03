@@ -9,6 +9,8 @@ import UIKit
 
 class SearchView: UIView {
     
+    var closureLikeButton: ((UIButton, IndexPath) -> Void)?
+    
     var closureSelectedItemFromCollectionView: ((UICollectionView, IndexPath) -> Void)?
     
     private var collectionView: UICollectionView!
@@ -62,6 +64,9 @@ extension SearchView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CollectionViewCellForSearchView.self), for: indexPath) as! CollectionViewCellForSearchView
         cell.configureCollectionViewCellForSearchView(numberOfRooms: "2", price: "250", geolocation: "Республика Беларусь, город Минск, Проспект независимости 58")
+        cell.closureLikeButton = { [weak self] button in
+            self?.closureLikeButton?(button, indexPath)
+        }
         return cell
     }
 }

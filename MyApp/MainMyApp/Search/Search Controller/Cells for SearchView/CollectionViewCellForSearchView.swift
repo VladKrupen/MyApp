@@ -9,7 +9,9 @@ import UIKit
 
 class CollectionViewCellForSearchView: UICollectionViewCell {
     
-    private var model: SearchModel = SearchModel()
+    var closureLikeButton: ((UIButton) -> Void)?
+    
+    var images: [UIImage] = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]
     
     private var collectionViewImages: UICollectionView!
     
@@ -54,10 +56,30 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
         return verticalStack
     }()
     
+    private let likeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupElements()
         layoutElements()
+    }
+    
+    private func setupElements() {
+        setupCollectionViewImages()
+        setupPageControl()
+        setupLikeButton()
+    }
+    
+    private func layoutElements() {
+        layoutCollectionViewImages()
+        layoutPageControl()
+        layoutVerticalStack()
+        layoutLikeButton()
     }
     
     private func setupCollectionViewImages() {
@@ -69,17 +91,6 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
         collectionViewImages.dataSource = self
         collectionViewImages.delegate = self
         collectionViewImages.register(CellForCollectionImages.self, forCellWithReuseIdentifier: String(describing: CellForCollectionImages.self))
-    }
-    
-    private func setupElements() {
-        setupCollectionViewImages()
-        setupPageControl()
-    }
-    
-    private func layoutElements() {
-        layoutCollectionViewImages()
-        layoutPageControl()
-        layoutVerticalStack()
     }
     
     private func layoutCollectionViewImages() {
@@ -115,7 +126,7 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
     }
     
     private func setupPageControl() {
-        pageControl.numberOfPages = model.getImages().count
+        pageControl.numberOfPages = images.count
     }
     
     private func layoutVerticalStack() {
@@ -133,6 +144,23 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
         ])
     }
     
+    private func setupLikeButton() {
+        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+    }
+    
+    private func layoutLikeButton() {
+        contentView.addSubview(likeButton)
+        
+        NSLayoutConstraint.activate([
+            likeButton.topAnchor.constraint(equalTo: collectionViewImages.topAnchor, constant: 15),
+            likeButton.trailingAnchor.constraint(equalTo: collectionViewImages.trailingAnchor, constant: -15)
+        ])
+    }
+    
+    @objc private func likeButtonTapped(_ sender: UIButton) {
+        closureLikeButton?(sender)
+    }
+    
     func configureCollectionViewCellForSearchView(numberOfRooms: String, price: String, geolocation: String) {
         numberOfRoomsLabel.text = "Комнат: " + numberOfRooms
         priceLabel.text = price + "$"
@@ -146,12 +174,12 @@ class CollectionViewCellForSearchView: UICollectionViewCell {
 
 extension CollectionViewCellForSearchView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model.getImages().count
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CellForCollectionImages.self), for: indexPath) as! CellForCollectionImages
-        cell.imageView.image = model.getImages()[indexPath.item]
+        cell.imageView.image = images[indexPath.item]
         return cell
     }
 }

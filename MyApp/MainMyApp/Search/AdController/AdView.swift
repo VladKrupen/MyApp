@@ -9,7 +9,7 @@ import UIKit
 
 class AdView: UIView {
     
-    private let model = SearchModel()
+    var images: [UIImage] = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -228,12 +228,12 @@ In iOS 6 and later, assigning a new value to this property also replaces the val
 
 extension AdView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model.getImages().count
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CellForImages.self), for: indexPath) as! CellForImages
-        cell.imageView.image = model.getImages()[indexPath.item]
+        cell.imageView.image = images[indexPath.item]
         return cell
     }
 }
