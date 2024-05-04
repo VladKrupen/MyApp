@@ -31,6 +31,7 @@ class AdCreationViewController: UIViewController {
         setupNavigationItem()
         layoutAdCreationView()
         imageViewTapped()
+        postAdButtonTapped()
     }
     
     private func layoutAdCreationView() {
@@ -57,6 +58,12 @@ class AdCreationViewController: UIViewController {
             guard self != nil else { return }
             self?.pickerViewController.modalPresentationStyle = .fullScreen
             self?.present(self!.pickerViewController, animated: true)
+        }
+    }
+    
+    private func postAdButtonTapped() {
+        adCreationView.closurePostAdButton = { [weak self] description, price, numberOfRooms, geolocation, name, email, number in
+            print([description, price, numberOfRooms, geolocation, name, email, number])
         }
     }
 }

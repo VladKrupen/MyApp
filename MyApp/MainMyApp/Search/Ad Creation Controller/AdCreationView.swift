@@ -9,25 +9,160 @@ import UIKit
 
 class AdCreationView: UIView {
     
+    var closurePostAdButton: ((String, String, String, String, String, String, String) -> Void)?
+    
     var closureImageViewTapped: (() -> Void)?
     
     var selectionImages: [UIImage] = []
     
     var collectionView: UICollectionView!
+    
+    private var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Описание"
+        label.font = UIFont.preferredFont(forTextStyle: .title3)
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let textView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 17)
+        textView.layer.cornerRadius = 15
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = CustomColor.customBlue.cgColor
+        textView.isScrollEnabled = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
+    }()
+    
+    private let stackDescriptionElements: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 5
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private let priceField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Цена в $"
+        textField.keyboardType = .decimalPad
+        textField.borderStyle = .roundedRect
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 7
+        textField.layer.borderColor = CustomColor.customBlue.cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let numberOfRoomsField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Количество комант"
+        textField.keyboardType = .numberPad
+        textField.borderStyle = .roundedRect
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 7
+        textField.layer.borderColor = CustomColor.customBlue.cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let geolocationField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Местоположение"
+        textField.borderStyle = .roundedRect
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 7
+        textField.layer.borderColor = CustomColor.customBlue.cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let nameField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Имя"
+        textField.borderStyle = .roundedRect
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 7
+        textField.layer.borderColor = CustomColor.customBlue.cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let emailField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Email"
+        textField.keyboardType = .emailAddress
+        textField.borderStyle = .roundedRect
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 7
+        textField.layer.borderColor = CustomColor.customBlue.cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let numberField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "+375"
+        textField.keyboardType = .phonePad
+        textField.borderStyle = .roundedRect
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 7
+        textField.layer.borderColor = CustomColor.customBlue.cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let stackTextField: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 10
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private let postAdButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Подать объявление", for: .normal)
+        button.tintColor = .white
+        button.layer.cornerRadius = 15
+        button.backgroundColor = CustomColor.customBlue
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
         
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupElements()
         layoutElements()
         scrollingWhenOpeningKeyboard()
+        postAdButton.addTarget(self, action: #selector(postAdButtonTapped), for: .touchUpInside)
     }
     
     private func setupElements() {
         setupCollectionView()
+        priceField.delegate = self
+        numberOfRoomsField.delegate = self
+        geolocationField.delegate = self
+        nameField.delegate = self
+        emailField.delegate = self
+        numberField.delegate = self
     }
     
     private func layoutElements() {
+        layoutScrollView()
         layoutCollectionView()
+        layoutStackDescriptionElements()
+        layoutStackTextField()
+        layoutPostAdButton()
     }
     
     private func setupCollectionView() {
@@ -35,43 +170,93 @@ class AdCreationView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.register(PhotoSelectionCell.self, forCellWithReuseIdentifier: String(describing: PhotoSelectionCell.self))
-        collectionView.register(DescriptionCell.self, forCellWithReuseIdentifier: String(describing: DescriptionCell.self))
     }
     
     private func getCompositionLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { section, _ in
-            switch section {
-            case 0:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(1), heightDimension: .estimated(1))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(1), heightDimension: .estimated(1))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                let section = NSCollectionLayoutSection(group: group)
-                section.orthogonalScrollingBehavior = .continuous
-                section.contentInsets = .init(top: 0, leading: 5, bottom: 0, trailing: 5)
-                return section
-            case 1:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-                let section = NSCollectionLayoutSection(group: group)
-                return section
-            default:
-                fatalError()
-            }
+            let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(1), heightDimension: .estimated(1))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(1), heightDimension: .estimated(1))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .continuous
+            section.contentInsets = .init(top: 0, leading: 5, bottom: 0, trailing: 5)
+            return section
         }
     }
     
-    private func layoutCollectionView() {
-        addSubview(collectionView)
+    private func layoutScrollView() {
+        addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+    }
+    
+    private func layoutCollectionView() {
+        scrollView.addSubview(collectionView)
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.heightAnchor.constraint(equalToConstant: 120)
+        ])
+    }
+    
+    private func layoutStackDescriptionElements() {
+        stackDescriptionElements.addArrangedSubview(descriptionLabel)
+        stackDescriptionElements.addArrangedSubview(textView)
+        scrollView.addSubview(stackDescriptionElements)
+        
+        NSLayoutConstraint.activate([
+            stackDescriptionElements.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            stackDescriptionElements.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            stackDescriptionElements.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            textView.heightAnchor.constraint(equalToConstant: 200),
+        ])
+    }
+    
+    private func layoutStackTextField() {
+        stackTextField.addArrangedSubview(priceField)
+        stackTextField.addArrangedSubview(numberOfRoomsField)
+        stackTextField.addArrangedSubview(geolocationField)
+        stackTextField.addArrangedSubview(nameField)
+        stackTextField.addArrangedSubview(emailField)
+        stackTextField.addArrangedSubview(numberField)
+        scrollView.addSubview(stackTextField)
+        
+        NSLayoutConstraint.activate([
+            stackTextField.topAnchor.constraint(equalTo: stackDescriptionElements.bottomAnchor, constant: 10),
+            stackTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            stackTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+        ])
+    }
+    
+    private func layoutPostAdButton() {
+        scrollView.addSubview(postAdButton)
+        
+        NSLayoutConstraint.activate([
+            postAdButton.topAnchor.constraint(equalTo: stackTextField.bottomAnchor, constant: 20),
+            postAdButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            postAdButton.widthAnchor.constraint(equalToConstant: 200),
+            scrollView.bottomAnchor.constraint(equalTo: postAdButton.bottomAnchor, constant: 10)
+        ])
+    }
+    
+    @objc private func postAdButtonTapped(_ sender: UIButton) {
+        if let description = textView.text,
+           let price = priceField.text,
+           let numberOfRooms = numberOfRoomsField.text,
+           let geolocation = geolocationField.text,
+           let name = nameField.text,
+           let email = emailField.text,
+           let number = numberField.text {
+            closurePostAdButton?(description, price, numberOfRooms, geolocation, name, email, number)
+        }
     }
     
     private func scrollingWhenOpeningKeyboard() {
@@ -84,14 +269,15 @@ class AdCreationView: UIView {
             let keyboardHeight = keyboardFrame.height
             
             let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
-            collectionView.contentInset = contentInset
-            collectionView.scrollIndicatorInsets = contentInset
+            scrollView.contentInset = contentInset
+            scrollView.scrollIndicatorInsets = contentInset
+            
         }
     }
 
     @objc private func keyboardWillHide(_ notification: Notification) {
-        collectionView.contentInset = .zero
-        collectionView.scrollIndicatorInsets = .zero
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
     }
     
     deinit {
@@ -106,43 +292,35 @@ class AdCreationView: UIView {
 extension AdCreationView: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            if selectionImages.isEmpty {
-                return 1
-            } else {
-                return selectionImages.count
-            }
-        case 1:
+        if selectionImages.isEmpty {
             return 1
-        default:
-            fatalError()
+        } else {
+            return selectionImages.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.section {
-        case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotoSelectionCell.self), for: indexPath) as! PhotoSelectionCell
-            cell.closureImageViewTapped = { [weak self] in
-                guard self != nil else { return }
-                self?.closureImageViewTapped?()
-            }
-            if !selectionImages.isEmpty {
-                cell.configureImageView(image: selectionImages[indexPath.item])
-            } else {
-                cell.configureImageView(image: UIImage(systemName: "camera")!)
-            }
-            return cell
-        case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: DescriptionCell.self), for: indexPath) as! DescriptionCell
-            return cell
-        default:
-            fatalError("Ошибка создания ячеек")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotoSelectionCell.self), for: indexPath) as! PhotoSelectionCell
+        cell.closureImageViewTapped = { [weak self] in
+            guard self != nil else { return }
+            self?.closureImageViewTapped?()
         }
+        if !selectionImages.isEmpty {
+            cell.configureImageView(image: selectionImages[indexPath.item])
+        } else {
+            cell.configureImageView(image: UIImage(systemName: "camera")!)
+        }
+        return cell
+    }
+}
+
+extension AdCreationView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let contentOffset = CGPoint(x: 0, y: textField.frame.origin.y + 50 - scrollView.contentInset.top)
+                scrollView.setContentOffset(contentOffset, animated: true)
     }
 }

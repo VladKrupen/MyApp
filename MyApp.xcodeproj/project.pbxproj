@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0110EEE02BE0072B001BA191 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0110EEDF2BE0072B001BA191 /* DescriptionCell.swift */; };
 		016F9DDE2BD6B44600DCC3AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */; };
 		016F9DE12BD6C87200DCC3AF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9DE02BD6C87200DCC3AF /* FirebaseAnalytics */; };
 		016F9DE32BD6C87200DCC3AF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9DE22BD6C87200DCC3AF /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -67,7 +66,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0110EEDF2BE0072B001BA191 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0199F9E42BDE886E00DD81FE /* AdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
 		0199F9E62BDE8C9400DD81FE /* AdCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCreationViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				0199F9EB2BDEA72D00DD81FE /* PhotoSelectionCell.swift */,
-				0110EEDF2BE0072B001BA191 /* DescriptionCell.swift */,
 			);
 			path = "Cell for AdCreationView";
 			sourceTree = "<group>";
@@ -423,7 +420,6 @@
 				01AF429F2BD96BED0010C917 /* SearchViewController.swift in Sources */,
 				0199F9E92BDE990B00DD81FE /* AdCreationView.swift in Sources */,
 				01B7D9A02BD54EFD00CB8462 /* AppDelegate.swift in Sources */,
-				0110EEE02BE0072B001BA191 /* DescriptionCell.swift in Sources */,
 				01B7D9C02BD5572300CB8462 /* MainTabBarController.swift in Sources */,
 				01FCA7972BE3F4680093939C /* ProfileModel.swift in Sources */,
 				01B7D9A22BD54EFD00CB8462 /* SceneDelegate.swift in Sources */,
