@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AdCreationView: UIView {
+final class AdvertismentCreationView: UIView {
     
     var closurePostAdButton: ((String, String, String, String, String, String, String) -> Void)?
     
@@ -141,6 +141,7 @@ class AdCreationView: UIView {
         
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .white
         setupElements()
         layoutElements()
         scrollingWhenOpeningKeyboard()
@@ -289,7 +290,7 @@ class AdCreationView: UIView {
     }
 }
 
-extension AdCreationView: UICollectionViewDataSource {
+extension AdvertismentCreationView: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -318,7 +319,7 @@ extension AdCreationView: UICollectionViewDataSource {
     }
 }
 
-extension AdCreationView: UITextFieldDelegate {
+extension AdvertismentCreationView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let contentOffset = CGPoint(x: 0, y: textField.frame.origin.y + 50 - scrollView.contentInset.top)
                 scrollView.setContentOffset(contentOffset, animated: true)

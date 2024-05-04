@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-class AdCreationModel {
+final class AdvertismentCreationModel {
     
-    weak private var adCreationViewController: AdCreationViewController?
+    weak private var adCreationViewController: AdvertismentCreationViewController?
     
-    init(adCreationViewController: AdCreationViewController? = nil) {
+    init(adCreationViewController: AdvertismentCreationViewController? = nil) {
         self.adCreationViewController = adCreationViewController
     }
     

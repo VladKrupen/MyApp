@@ -8,11 +8,11 @@
 import UIKit
 import PhotosUI
 
-class AdCreationViewController: UIViewController {
+final class AdvertismentCreationViewController: UIViewController {
     
-    lazy var model = AdCreationModel(adCreationViewController: self)
+    lazy var model = AdvertismentCreationModel(adCreationViewController: self)
     
-    private let adCreationView = AdCreationView()
+    private let adCreationView = AdvertismentCreationView()
     
     lazy var pickerViewController: PHPickerViewController = {
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
@@ -56,7 +56,7 @@ class AdCreationViewController: UIViewController {
     }
 }
 
-extension AdCreationViewController: PHPickerViewControllerDelegate {
+extension AdvertismentCreationViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
         let itemProviders = results.map { $0.itemProvider }

@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-class ProfileModel {
+final class ProfileModel {
     
     weak var profileViewController: ProfileViewController?
     

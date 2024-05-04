@@ -7,9 +7,7 @@
 
 import UIKit
 
-class AdView: UIView {
-    
-    var images: [UIImage] = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]
+final class AdvertismentView: UIView {
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -17,11 +15,35 @@ class AdView: UIView {
         return scrollView
     }()
     
-    private var collectionView: UICollectionView!
+    private lazy var scrollImagesView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .clear
+        scrollView.isPagingEnabled = true
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.delegate = self
+        return scrollView
+    }()
+    
+    private let imagesStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 0
+        return stackView
+    }()
+    
+    private let pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.pageIndicatorTintColor = .lightGray
+        pageControl.currentPageIndicatorTintColor = .white
+        pageControl.isEnabled = false
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        return pageControl
+    }()
     
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "250$"
         label.font = UIFont.boldSystemFont(ofSize: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -29,7 +51,6 @@ class AdView: UIView {
     
     private let numberOfRoomsLabel: UILabel = {
         let label = UILabel()
-        label.text = "Количество комант 2"
         label.font = UIFont.systemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -37,7 +58,6 @@ class AdView: UIView {
     
     private let geolocationLabel: UILabel = {
         let label = UILabel()
-        label.text = "Республика Беларусь, город Минск, Проспект независимости 58"
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
         label.textColor = .gray
         label.numberOfLines = 3
@@ -65,10 +85,6 @@ class AdView: UIView {
     
     private let textView: UITextView = {
         let textView = UITextView()
-        textView.text = """
-In iOS 6 and later, assigning a new value to this property also replaces the value of the attributedText property with the same text, albeit without any inherent style attributes. Instead the text view styles the new string using the font, textColor, and other style-related properties of the class.
-In iOS 6 and later, assigning a new value to this property also replaces the value of the attributedText property with the same text, albeit without any inherent style attributes. Instead the text view styles the new string using the font, textColor, and other style-related properties of the class.
-"""
         textView.textContainer.lineBreakMode = .byWordWrapping
         textView.font = UIFont.systemFont(ofSize: 17)
         textView.layer.cornerRadius = 15
@@ -90,7 +106,6 @@ In iOS 6 and later, assigning a new value to this property also replaces the val
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Арендодатель: Александр"
         label.font = UIFont.systemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -98,7 +113,6 @@ In iOS 6 and later, assigning a new value to this property also replaces the val
     
     private let numberLabel: UILabel = {
         let label = UILabel()
-        label.text = "Телефон для связи: +375297778899"
         label.font = UIFont.systemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -106,7 +120,6 @@ In iOS 6 and later, assigning a new value to this property also replaces the val
     
     private let emailLabel: UILabel = {
         let label = UILabel()
-        label.text = "Почта для связи: test@test.ru"
         label.font = UIFont.systemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -122,64 +135,97 @@ In iOS 6 and later, assigning a new value to this property also replaces the val
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupElements()
         layoutElements()
     }
     
-    private func setupElements() {
-        setupCollectionView()
+    func setupView(advertisment: Advertisment) {
+        setupImages(advertisment: advertisment)
+        setupPageControl(advertisment: advertisment)
+        priceLabel.text = "\(advertisment.price)$"
+        numberOfRoomsLabel.text = "Количество комнат: \(Int(advertisment.roomsCount))"
+        geolocationLabel.text = advertisment.location
+        textView.text = advertisment.description
+        nameLabel.text = "Арендодатель: \(advertisment.ownerName)"
+        numberLabel.text = "Телефон для связи: \(advertisment.phoneNumber)"
+        emailLabel.text = "Почта: \(advertisment.email)"
+    }
+    
+    private func setupImages(advertisment: Advertisment) {
+        for imageURLString in advertisment.imageURLStrings {
+            let imageURL = URL(string: imageURLString)
+            let imageView = createImageView()
+            
+            let placeholderImage = UIImage(systemName: "photo.on.rectangle.angled")
+            imageView.sd_setImage(with: imageURL, placeholderImage: placeholderImage)
+            imagesStackView.addArrangedSubview(imageView)
+            
+            NSLayoutConstraint.activate([
+                imageView.widthAnchor.constraint(equalTo: scrollImagesView.frameLayoutGuide.widthAnchor, multiplier: 1)
+            ])
+        }
+    }
+    
+    private func createImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        return imageView
+    }
+    
+    private func setupPageControl(advertisment: Advertisment) {
+        pageControl.numberOfPages = advertisment.imageURLStrings.count
     }
     
     private func layoutElements() {
         layoutScrollView()
-        layoutCollectionView()
+        layoutScrollImagesView()
+        layoutImagesStackView()
+        layoutPageControl()
         layoutVerticalStack()
         layoutStackDescription()
         layoutStackWithInformation()
     }
-    
-    private func setupCollectionView() {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionLayout())
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(CellForImages.self, forCellWithReuseIdentifier: String(describing: CellForImages.self))
-    }
-    
-    private func getCompositionLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { _, _ in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .groupPagingCentered
-            return section
-        }
-    }
-    
+        
     private func layoutScrollView() {
         addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
         ])
     }
     
-    private func layoutCollectionView() {
-        scrollView.addSubview(collectionView)
-        
+    private func layoutScrollImagesView() {
+        scrollView.addSubview(scrollImagesView)
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 250)
+            scrollImagesView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            scrollImagesView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            scrollImagesView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            scrollImagesView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.7)
         ])
     }
-
+    
+    private func layoutImagesStackView() {
+        scrollImagesView.addSubview(imagesStackView)
+        NSLayoutConstraint.activate([
+            imagesStackView.topAnchor.constraint(equalTo: scrollImagesView.frameLayoutGuide.topAnchor),
+            imagesStackView.leadingAnchor.constraint(equalTo: scrollImagesView.contentLayoutGuide.leadingAnchor),
+            imagesStackView.trailingAnchor.constraint(equalTo: scrollImagesView.contentLayoutGuide.trailingAnchor),
+            imagesStackView.bottomAnchor.constraint(equalTo: scrollImagesView.frameLayoutGuide.bottomAnchor)
+        ])
+    }
+    
+    private func layoutPageControl() {
+        scrollView.addSubview(pageControl)
+        NSLayoutConstraint.activate([
+            pageControl.centerXAnchor.constraint(equalTo: scrollImagesView.centerXAnchor),
+            pageControl.bottomAnchor.constraint(equalTo: scrollImagesView.bottomAnchor, constant: -10)
+        ])
+    }
+    
     private func layoutVerticalStack() {
         verticalStack.addArrangedSubview(priceLabel)
         verticalStack.addArrangedSubview(numberOfRoomsLabel)
@@ -187,7 +233,7 @@ In iOS 6 and later, assigning a new value to this property also replaces the val
         scrollView.addSubview(verticalStack)
         
         NSLayoutConstraint.activate([
-            verticalStack.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
+            verticalStack.topAnchor.constraint(equalTo: scrollImagesView.bottomAnchor, constant: 10),
             verticalStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             verticalStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10),
         ])
@@ -226,18 +272,11 @@ In iOS 6 and later, assigning a new value to this property also replaces the val
     }
 }
 
-extension AdView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+extension AdvertismentView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let onePageSize = scrollView.frame.width
+        let currentXOffset = scrollView.contentOffset.x
+        let currentPageIndex = Int(currentXOffset / onePageSize)
+        pageControl.currentPage = currentPageIndex
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CellForImages.self), for: indexPath) as! CellForImages
-        cell.imageView.image = images[indexPath.item]
-        return cell
-    }
-}
-
-extension AdView: UICollectionViewDelegate {
-    
 }

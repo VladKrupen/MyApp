@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoSelectionCell: UICollectionViewCell {
+final class PhotoSelectionCell: UICollectionViewCell {
     
     var closureImageViewTapped: (() -> Void)?
     
