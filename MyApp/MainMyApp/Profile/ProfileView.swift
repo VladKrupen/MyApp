@@ -112,7 +112,7 @@ class ProfileView: UIView {
             avatarImage.widthAnchor.constraint(equalToConstant: 100),
             avatarImage.heightAnchor.constraint(equalToConstant: 100),
             avatarImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            avatarImage.topAnchor.constraint(equalTo: topAnchor, constant: 10)
+            avatarImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10)
         ])
     }
     

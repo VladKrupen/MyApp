@@ -12,11 +12,7 @@ class AdCreationViewController: UIViewController {
     
     lazy var model = AdCreationModel(adCreationViewController: self)
     
-    private let adCreationView: AdCreationView = {
-        let adCreationView = AdCreationView()
-        adCreationView.translatesAutoresizingMaskIntoConstraints = false
-        return adCreationView
-    }()
+    private let adCreationView = AdCreationView()
     
     lazy var pickerViewController: PHPickerViewController = {
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
@@ -26,23 +22,15 @@ class AdCreationViewController: UIViewController {
         return pickerViewController
     }()
     
+    override func loadView() {
+        view = adCreationView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItem()
-        layoutAdCreationView()
         imageViewTapped()
         postAdButtonTapped()
-    }
-    
-    private func layoutAdCreationView() {
-        view.addSubview(adCreationView)
-        
-        NSLayoutConstraint.activate([
-            adCreationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            adCreationView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            adCreationView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            adCreationView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-        ])
     }
     
     func addImages(images: [UIImage]) {

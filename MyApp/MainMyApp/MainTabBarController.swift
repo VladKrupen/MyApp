@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

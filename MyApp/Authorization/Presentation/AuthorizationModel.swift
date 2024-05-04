@@ -8,12 +8,17 @@
 import Foundation
 import Firebase
 
-class AuthorizationModel {
+final class AuthorizationModel {
     
     weak private var authorizationController: AuthorizationViewController?
     
-    init(authorizationController: AuthorizationViewController?) {
+    private let userAuthentication: UserAuthentication
+    private let userCreator: UserCreator
+    
+    init(authorizationController: AuthorizationViewController?, userAuthentication: UserAuthentication, userCreator: UserCreator) {
         self.authorizationController = authorizationController
+        self.userAuthentication = userAuthentication
+        self.userCreator = userCreator
     }
     
     private var signup: Bool = false {
@@ -39,19 +44,18 @@ class AuthorizationModel {
     }
     
     private func userRegistration(name: String, email: String, password: String) {
-        if !name.isEmpty && !email.isEmpty && !password.isEmpty {
-            Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                if error == nil {
-                    if let result = result {
-                        let reference = Database.database().reference().child("users")
-                        reference.child(result.user.uid).updateChildValues(["name" : name, "email" : email])
-                    }
-                } else {
-                    self.authorizationController?.showAlertIncorrectEmail()
-                }
-            }
-        } else {
+        guard !name.isEmpty, !email.isEmpty, !password.isEmpty else {
             authorizationController?.showAlertAboutEmptyFields()
+            return
+        }
+        userAuthentication.authUser(email: email, password: password) { [weak self] error in
+            guard error == nil else {
+                self?.authorizationController?.showAlertIncorrectEmail()
+                return
+            }
+            self?.userCreator.createUser(name: name, email: email, completion: { [weak self] _ in
+                SceneDelegate.shared.rootViewController.switchToScreen(viewController: MainTabBarController())
+            })
         }
     }
     

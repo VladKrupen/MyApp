@@ -9,25 +9,14 @@ import UIKit
 
 class AdViewController: UIViewController {
     
-    private let adView: AdView = {
-        let adView = AdView()
-        adView.translatesAutoresizingMaskIntoConstraints = false
-        return adView
-    }()
+    private let adView = AdView()
+    
+    override func loadView() {
+        view = adView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layoutAdView()
-    }
-    
-    private func layoutAdView() {
-        view.addSubview(adView)
         
-        NSLayoutConstraint.activate([
-            adView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            adView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            adView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            adView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
     }
 }

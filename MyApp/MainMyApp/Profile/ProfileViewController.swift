@@ -9,29 +9,22 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    private let profileView: ProfileView = {
-        let profileView = ProfileView()
-        profileView.translatesAutoresizingMaskIntoConstraints = false
-        return profileView
-    }()
+    private let profileView = ProfileView()
     
     lazy var model = ProfileModel(profileViewController: self)
     
+    override func loadView() {
+        view = profileView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        layoutProfileView()
+        setupNavigationItem()
         signOutButtonTapped()
     }
     
-    private func layoutProfileView() {
-        view.addSubview(profileView)
-        
-        NSLayoutConstraint.activate([
-            profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            profileView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            profileView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-        ])
+    private func setupNavigationItem() {
+        navigationItem.title = "Профиль"
     }
     
     private func signOutButtonTapped() {

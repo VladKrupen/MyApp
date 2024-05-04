@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AuthorizantionView: UIView {
+final class AuthorizantionView: UIView {
     
     var closureButton: (() -> Void)?
     var closureTextFields: ((String, String, String) -> Void)?
@@ -79,7 +79,7 @@ class AuthorizantionView: UIView {
         addSubview(textLabel)
         
         NSLayoutConstraint.activate([
-            textLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            textLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             textLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
