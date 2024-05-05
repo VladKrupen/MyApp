@@ -9,8 +9,8 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-final class FirebaseUserManager: UserAuthentication, UserCreator {
-    
+final class FirebaseUserManager: UserAuthentication, UserCreator, UserGetter {
+ 
     private let auth = Auth.auth()
     private let database = Firestore.firestore()
     
@@ -43,4 +43,36 @@ final class FirebaseUserManager: UserAuthentication, UserCreator {
         
         database.collection(Constants.userDocName).document(userId).setData(userJSON, completion: completion)
     }
+    
+    func getCurrentUser(completion: @escaping (Result<User, any Error>) -> Void) {
+        guard let currentUserId = auth.currentUser?.uid else {
+            let error = NSError(domain: "Can't get user id", code: 401)
+            completion(.failure(error))
+            return
+        }
+        database.collection(Constants.userDocName).document(currentUserId).getDocument { snapshot, error in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            guard let userJSON = snapshot?.data() else {
+                let error = NSError(domain: "Can't get user JSON", code: 401)
+                completion(.failure(error))
+                return
+            }
+            guard let userData = try? JSONSerialization.data(withJSONObject: userJSON) else {
+                let error = NSError(domain: "Can't get user data", code: 401)
+                completion(.failure(error))
+                return
+            }
+            guard let user = try? JSONDecoder().decode(User.self, from: userData) else {
+                let error = NSError(domain: "Can't get user", code: 401)
+                completion(.failure(error))
+                return
+            }
+            let currentUser = user
+            completion(.success(user))
+        }
+    }
+    
 }

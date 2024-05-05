@@ -12,8 +12,25 @@ final class AdvertismentCreationModel {
     
     weak private var adCreationViewController: AdvertismentCreationViewController?
     
-    init(adCreationViewController: AdvertismentCreationViewController? = nil) {
+    let imageToStringConverter: ImageToStringConverter
+   
+    init(adCreationViewController: AdvertismentCreationViewController?, imageToStringConverter: ImageToStringConverter) {
         self.adCreationViewController = adCreationViewController
+        self.imageToStringConverter = imageToStringConverter
+    }
+    
+    
+    func convertImagesToStrings(images: UIImage) -> String {
+        var string: String = ""
+        imageToStringConverter.convertImagesToStrings(image: images) { result in
+            switch result {
+            case .success(let strings):
+                string = strings
+            case .failure(let error):
+                print(error)
+            }
+        }
+        return string
     }
     
     var selectionImages: [UIImage] = []

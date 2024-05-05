@@ -19,6 +19,10 @@
 		014E44C82BE69CDF00F650BE /* Advertisment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44C72BE69CDF00F650BE /* Advertisment.swift */; };
 		014E44CB2BE6AAFE00F650BE /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 014E44CA2BE6AAFE00F650BE /* SDWebImage */; };
 		014E44CD2BE6AAFE00F650BE /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 014E44CC2BE6AAFE00F650BE /* SDWebImageMapKit */; };
+		014E44DB2BE6C6EA00F650BE /* UserGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44DA2BE6C6EA00F650BE /* UserGetter.swift */; };
+		014E44DF2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44DE2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift */; };
+		014E44E12BE759A900F650BE /* ImageToLinkConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44E02BE759A900F650BE /* ImageToLinkConverter.swift */; };
+		014E44E72BE7F52800F650BE /* FirebaseFavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44E62BE7F52800F650BE /* FirebaseFavoritesManager.swift */; };
 		016F9DDE2BD6B44600DCC3AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */; };
 		016F9DE12BD6C87200DCC3AF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9DE02BD6C87200DCC3AF /* FirebaseAnalytics */; };
 		016F9DE32BD6C87200DCC3AF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9DE22BD6C87200DCC3AF /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -86,6 +90,10 @@
 		014E44C22BE69C3400F650BE /* AdvertismentFavouriteGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertismentFavouriteGetter.swift; sourceTree = "<group>"; };
 		014E44C42BE69C4900F650BE /* FirebaseAdvertismentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAdvertismentManager.swift; sourceTree = "<group>"; };
 		014E44C72BE69CDF00F650BE /* Advertisment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertisment.swift; sourceTree = "<group>"; };
+		014E44DA2BE6C6EA00F650BE /* UserGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetter.swift; sourceTree = "<group>"; };
+		014E44DE2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAdvertismentCreationManager.swift; sourceTree = "<group>"; };
+		014E44E02BE759A900F650BE /* ImageToLinkConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToLinkConverter.swift; sourceTree = "<group>"; };
+		014E44E62BE7F52800F650BE /* FirebaseFavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFavoritesManager.swift; sourceTree = "<group>"; };
 		016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0199F9E42BDE886E00DD81FE /* AdertismentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdertismentViewController.swift; sourceTree = "<group>"; };
 		0199F9E62BDE8C9400DD81FE /* AdvertismentCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertismentCreationViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +383,68 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		014E44D92BE6C6CA00F650BE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				014E44DA2BE6C6EA00F650BE /* UserGetter.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		014E44DC2BE7589B00F650BE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				014E44E02BE759A900F650BE /* ImageToLinkConverter.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		014E44DD2BE758A400F650BE /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				014E44DE2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		014E44E22BE7EFD800F650BE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				014E44E32BE7EFE100F650BE /* Controller */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		014E44E32BE7EFE100F650BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				01AF42A02BD96CD60010C917 /* SavedViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		014E44E42BE7F4B800F650BE /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				014E44E62BE7F52800F650BE /* FirebaseFavoritesManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		014E44E52BE7F4C100F650BE /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		014E44E82BE7F56C00F650BE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		0199F9E02BDE702500DD81FE /* Cells for SearchView */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +467,8 @@
 		0199F9E22BDE877C00DD81FE /* Ad Creation Controller */ = {
 			isa = PBXGroup;
 			children = (
+				014E44DD2BE758A400F650BE /* Manager */,
+				014E44DC2BE7589B00F650BE /* Protocols */,
 				014E44D12BE6B0DB00F650BE /* Presentation */,
 				014E44C62BE69CC300F650BE /* Models */,
 				014E44CE2BE6B0AA00F650BE /* UI */,
@@ -423,7 +495,10 @@
 		01A66E1D2BDD420F000A4A09 /* Saved */ = {
 			isa = PBXGroup;
 			children = (
-				01AF42A02BD96CD60010C917 /* SavedViewController.swift */,
+				014E44E42BE7F4B800F650BE /* Manager */,
+				014E44E82BE7F56C00F650BE /* Protocols */,
+				014E44E52BE7F4C100F650BE /* Presentation */,
+				014E44E22BE7EFD800F650BE /* UI */,
 			);
 			path = Saved;
 			sourceTree = "<group>";
@@ -441,6 +516,7 @@
 		01A66E1F2BDD4249000A4A09 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				014E44D92BE6C6CA00F650BE /* Protocols */,
 				014E44D82BE6C45900F650BE /* Presentation */,
 				014E44D52BE6C43100F650BE /* UI */,
 			);
@@ -646,6 +722,7 @@
 			files = (
 				01A66E222BDD4370000A4A09 /* CustomColor+enum.swift in Sources */,
 				014E44B12BE68E0700F650BE /* FirebaseUserManager.swift in Sources */,
+				014E44DB2BE6C6EA00F650BE /* UserGetter.swift in Sources */,
 				0199F9EC2BDEA72D00DD81FE /* PhotoSelectionCell.swift in Sources */,
 				014E44C82BE69CDF00F650BE /* Advertisment.swift in Sources */,
 				01B7D9A42BD54EFD00CB8462 /* RootViewController.swift in Sources */,
@@ -654,6 +731,7 @@
 				01B7D9A02BD54EFD00CB8462 /* AppDelegate.swift in Sources */,
 				014E44C32BE69C3400F650BE /* AdvertismentFavouriteGetter.swift in Sources */,
 				014E44BF2BE69BD100F650BE /* AdvertismentsGetter.swift in Sources */,
+				014E44DF2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift in Sources */,
 				014E44B42BE6904100F650BE /* User.swift in Sources */,
 				014E44B72BE6914300F650BE /* Constants.swift in Sources */,
 				01B7D9C02BD5572300CB8462 /* MainTabBarController.swift in Sources */,
@@ -672,9 +750,11 @@
 				01A66E242BDD4407000A4A09 /* SearchView.swift in Sources */,
 				0199F9E72BDE8C9400DD81FE /* AdvertismentCreationViewController.swift in Sources */,
 				01B7DA032BD5A89800CB8462 /* AuthorizantionView.swift in Sources */,
+				014E44E12BE759A900F650BE /* ImageToLinkConverter.swift in Sources */,
 				01A66E282BDD55C5000A4A09 /* AdvertismentCollectionViewCell.swift in Sources */,
 				0199F9E52BDE886E00DD81FE /* AdertismentViewController.swift in Sources */,
 				01B7D9BA2BD5538200CB8462 /* SplashViewController.swift in Sources */,
+				014E44E72BE7F52800F650BE /* FirebaseFavoritesManager.swift in Sources */,
 				014E44AC2BE68DD900F650BE /* UserAuthentication.swift in Sources */,
 				01FCA7932BE2972C0093939C /* AdvertismentCreationModel.swift in Sources */,
 				01B7D9C42BD55FBA00CB8462 /* SceneDelegate+extension.swift in Sources */,

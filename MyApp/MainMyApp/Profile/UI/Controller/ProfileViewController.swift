@@ -9,9 +9,12 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    private let profileView = ProfileView()
+    let profileView = ProfileView()
     
-    lazy var model = ProfileModel(profileViewController: self)
+    private let firebaseUserManager = FirebaseUserManager()
+    
+    lazy var model = ProfileModel(profileViewController: self,
+                                  userGetter: firebaseUserManager)
     
     override func loadView() {
         view = profileView
@@ -21,6 +24,7 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationItem()
         signOutButtonTapped()
+        model.getCurrentUser()
     }
     
     private func setupNavigationItem() {

@@ -12,8 +12,25 @@ final class ProfileModel {
     
     weak var profileViewController: ProfileViewController?
     
-    init(profileViewController: ProfileViewController? = nil) {
+//    var currentUser: User?
+    
+    private let userGetter: UserGetter
+    
+    init(profileViewController: ProfileViewController?, userGetter: UserGetter) {
         self.profileViewController = profileViewController
+        self.userGetter = userGetter
+    }
+    
+    func getCurrentUser() {
+        userGetter.getCurrentUser { [weak self] result in
+            switch result {
+            case .success(let user):
+                let currentUser = user
+                self?.profileViewController?.profileView.setupProfileView(user: currentUser)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func signOutProfile() {

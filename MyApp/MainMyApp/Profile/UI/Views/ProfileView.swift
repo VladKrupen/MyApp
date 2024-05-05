@@ -33,7 +33,6 @@ final class ProfileView: UIView {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Александр"
         label.font = UIFont.systemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -62,7 +61,6 @@ final class ProfileView: UIView {
     
     private let emailLabel: UILabel = {
         let label = UILabel()
-        label.text = "test@test.ru"
         label.font = UIFont.systemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -96,6 +94,11 @@ final class ProfileView: UIView {
         super.init(frame: frame)
         layoutElemnts()
         signOutButton.addTarget(self, action: #selector(signOutButtonTapped), for: .touchUpInside)
+    }
+    
+    func setupProfileView(user: User) {
+        nameLabel.text = user.name
+        emailLabel.text = user.email
     }
     
     private func layoutElemnts() {

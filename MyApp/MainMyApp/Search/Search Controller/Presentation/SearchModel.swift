@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchModel {
+final class SearchModel {
     
     weak var searchViewController: SearchViewController?
     

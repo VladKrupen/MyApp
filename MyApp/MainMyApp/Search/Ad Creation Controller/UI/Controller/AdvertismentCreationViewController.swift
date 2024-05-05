@@ -10,7 +10,12 @@ import PhotosUI
 
 final class AdvertismentCreationViewController: UIViewController {
     
-    lazy var model = AdvertismentCreationModel(adCreationViewController: self)
+    var imageStrings: [String] = []
+    
+    let firebaseAdvertismentCreationManager = FirebaseAdvertismentCreationManager()
+    
+//    lazy var model = AdvertismentCreationModel(adCreationViewController: self, imageToLinkConverter: firebaseAdvertismentCreationManager)
+    lazy var model = AdvertismentCreationModel(adCreationViewController: self, firebaseManager: firebaseAdvertismentCreationManager)
     
     private let adCreationView = AdvertismentCreationView()
     
@@ -51,7 +56,6 @@ final class AdvertismentCreationViewController: UIViewController {
     
     private func postAdButtonTapped() {
         adCreationView.closurePostAdButton = { [weak self] description, price, numberOfRooms, geolocation, name, email, number in
-            print([description, price, numberOfRooms, geolocation, name, email, number])
         }
     }
 }
@@ -64,6 +68,7 @@ extension AdvertismentCreationViewController: PHPickerViewControllerDelegate {
             item.loadObject(ofClass: UIImage.self) { image, error in
                 DispatchQueue.main.async {
                     if let image = image as? UIImage {
+                        self.imageStrings.append(self.model.convertImagesToStrings(images: image))
                         self.model.selectionImages.append(image)
                         self.addImages(images: self.model.selectionImages)
                         self.adCreationView.collectionView.reloadData()
@@ -71,6 +76,7 @@ extension AdvertismentCreationViewController: PHPickerViewControllerDelegate {
                 }
             }
         }
+        print(imageStrings)
         picker.dismiss(animated: true)
         if results.isEmpty {
             picker.dismiss(animated: true)
