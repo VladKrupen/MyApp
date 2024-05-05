@@ -22,7 +22,7 @@
 		014E44DB2BE6C6EA00F650BE /* UserGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44DA2BE6C6EA00F650BE /* UserGetter.swift */; };
 		014E44DF2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44DE2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift */; };
 		014E44E12BE759A900F650BE /* ImageToLinkConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44E02BE759A900F650BE /* ImageToLinkConverter.swift */; };
-		014E44E72BE7F52800F650BE /* FirebaseFavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44E62BE7F52800F650BE /* FirebaseFavoritesManager.swift */; };
+		014E44EA2BE7FA9000F650BE /* SavedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44E92BE7FA9000F650BE /* SavedModel.swift */; };
 		016F9DDE2BD6B44600DCC3AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */; };
 		016F9DE12BD6C87200DCC3AF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9DE02BD6C87200DCC3AF /* FirebaseAnalytics */; };
 		016F9DE32BD6C87200DCC3AF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9DE22BD6C87200DCC3AF /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -93,7 +93,7 @@
 		014E44DA2BE6C6EA00F650BE /* UserGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetter.swift; sourceTree = "<group>"; };
 		014E44DE2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAdvertismentCreationManager.swift; sourceTree = "<group>"; };
 		014E44E02BE759A900F650BE /* ImageToLinkConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToLinkConverter.swift; sourceTree = "<group>"; };
-		014E44E62BE7F52800F650BE /* FirebaseFavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFavoritesManager.swift; sourceTree = "<group>"; };
+		014E44E92BE7FA9000F650BE /* SavedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedModel.swift; sourceTree = "<group>"; };
 		016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0199F9E42BDE886E00DD81FE /* AdertismentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdertismentViewController.swift; sourceTree = "<group>"; };
 		0199F9E62BDE8C9400DD81FE /* AdvertismentCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertismentCreationViewController.swift; sourceTree = "<group>"; };
@@ -423,26 +423,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		014E44E42BE7F4B800F650BE /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				014E44E62BE7F52800F650BE /* FirebaseFavoritesManager.swift */,
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
 		014E44E52BE7F4C100F650BE /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				014E44E92BE7FA9000F650BE /* SavedModel.swift */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		014E44E82BE7F56C00F650BE /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		0199F9E02BDE702500DD81FE /* Cells for SearchView */ = {
@@ -495,8 +481,6 @@
 		01A66E1D2BDD420F000A4A09 /* Saved */ = {
 			isa = PBXGroup;
 			children = (
-				014E44E42BE7F4B800F650BE /* Manager */,
-				014E44E82BE7F56C00F650BE /* Protocols */,
 				014E44E52BE7F4C100F650BE /* Presentation */,
 				014E44E22BE7EFD800F650BE /* UI */,
 			);
@@ -735,6 +719,7 @@
 				014E44B42BE6904100F650BE /* User.swift in Sources */,
 				014E44B72BE6914300F650BE /* Constants.swift in Sources */,
 				01B7D9C02BD5572300CB8462 /* MainTabBarController.swift in Sources */,
+				014E44EA2BE7FA9000F650BE /* SavedModel.swift in Sources */,
 				01FCA7972BE3F4680093939C /* ProfileModel.swift in Sources */,
 				01B7D9A22BD54EFD00CB8462 /* SceneDelegate.swift in Sources */,
 				01AF429D2BD832340010C917 /* ProfileViewController.swift in Sources */,
@@ -754,7 +739,6 @@
 				01A66E282BDD55C5000A4A09 /* AdvertismentCollectionViewCell.swift in Sources */,
 				0199F9E52BDE886E00DD81FE /* AdertismentViewController.swift in Sources */,
 				01B7D9BA2BD5538200CB8462 /* SplashViewController.swift in Sources */,
-				014E44E72BE7F52800F650BE /* FirebaseFavoritesManager.swift in Sources */,
 				014E44AC2BE68DD900F650BE /* UserAuthentication.swift in Sources */,
 				01FCA7932BE2972C0093939C /* AdvertismentCreationModel.swift in Sources */,
 				01B7D9C42BD55FBA00CB8462 /* SceneDelegate+extension.swift in Sources */,
