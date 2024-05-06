@@ -100,14 +100,16 @@ final class AdvertismentCollectionViewCell: UICollectionViewCell {
         
         setupImages(advertisment: advertisment)
         setupPageControl(advertisment: advertisment)
+        setupLikeState(advertisment: advertisment)
     }
     
-    func isLikeButtonTrue() {
-        likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-    }
-    
-    func isLikeButtonFalse() {
-        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+    private func setupLikeState(advertisment: Advertisment) {
+        let likeImage = UIImage(systemName: "heart.fill")
+        let dislikeImage = UIImage(systemName: "heart")
+        
+        let selectedImageState = advertisment.isFavourite ? likeImage : dislikeImage
+        
+        likeButton.setImage(selectedImageState, for: .normal)
     }
     
     private func setupImages(advertisment: Advertisment) {

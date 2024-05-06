@@ -1,13 +1,13 @@
 //
-//  SearchView.swift
+//  SavedView.swift
 //  MyApp
 //
-//  Created by Vlad on 27.04.24.
+//  Created by Vlad on 6.05.24.
 //
 
 import UIKit
 
-final class SearchView: UIView {
+final class SavedView: UIView {
     
     lazy var collectionView: UICollectionView = {
         let layout = getCompositionLayout()
@@ -15,6 +15,18 @@ final class SearchView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(AdvertismentCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: AdvertismentCollectionViewCell.self))
         return collectionView
+    }()
+    
+    let emptyLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .boldSystemFont(ofSize: 15)
+        label.textColor = .black
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.text = "Нет сохраненных объявлений"
+        label.isHidden = true
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -40,6 +52,7 @@ final class SearchView: UIView {
     
     private func layoutElements() {
         layoutCollectionView()
+        layoutEmptyLabel()
     }
     
     private func layoutCollectionView() {
@@ -49,6 +62,15 @@ final class SearchView: UIView {
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
+    
+    private func layoutEmptyLabel() {
+        addSubview(emptyLabel)
+        NSLayoutConstraint.activate([
+            emptyLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            emptyLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            emptyLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)
         ])
     }
 }

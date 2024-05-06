@@ -103,7 +103,6 @@ extension AdvertismentCreationViewController: PHPickerViewControllerDelegate {
                 }
             }
         }
-        print(imageStrings)
         picker.dismiss(animated: true)
         if results.isEmpty {
             picker.dismiss(animated: true)

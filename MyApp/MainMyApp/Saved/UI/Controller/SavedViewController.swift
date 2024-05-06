@@ -9,14 +9,14 @@ import UIKit
 
 final class SavedViewController: UIViewController {
     
-    let searchView = SearchView()
-    lazy var model = SavedModel(savedController: self, firebaseAdvertismentManager: firebaseAdvertismentManager)
+    let savedView = SavedView()
+
+    lazy var model = SavedModel(savedController: self, firebaseAdvertismentManager: firebaseAdvertismentManager, advertismentFavouriteGetter: firebaseAdvertismentManager, advertismentLiker: firebaseAdvertismentManager)
     
     private let firebaseAdvertismentManager = FirebaseAdvertismentManager()
     
     override func loadView() {
-        super.loadView()
-        view = searchView
+        view = savedView
     }
     
     override func viewDidLoad() {
@@ -31,8 +31,8 @@ final class SavedViewController: UIViewController {
     }
     
     private func setupDelegates() {
-        searchView.collectionView.dataSource = self
-        searchView.collectionView.delegate = self
+        savedView.collectionView.dataSource = self
+        savedView.collectionView.delegate = self
     }
     
     private func setupNavigationItem() {
@@ -42,7 +42,7 @@ final class SavedViewController: UIViewController {
     func showDeletedSuccessfully() {
         let alertController = UIAlertController(title: "Удалено из сохраненного", message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Хорошо", style: .default) { [weak self ] _ in
-            self?.searchView.collectionView.reloadData()
+            self?.savedView.collectionView.reloadData()
         }
         alertController.addAction(okAction)
         DispatchQueue.main.async { [weak self] in
@@ -65,7 +65,7 @@ extension SavedViewController: UICollectionViewDataSource {
         advertismentCell.likeButtonPressed = { [weak self] likedAdvertisment in
             self?.model.changeAdvertismentFavouriteState(with: likedAdvertisment.id)
             self?.model.getFavouriteAdvertisment()
-            self?.searchView.collectionView.reloadData()
+            self?.savedView.collectionView.reloadData()
         }
         return advertismentCell
     }

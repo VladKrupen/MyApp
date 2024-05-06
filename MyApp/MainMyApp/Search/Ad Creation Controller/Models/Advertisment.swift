@@ -17,6 +17,19 @@ struct Advertisment: Codable {
     let ownerName: String
     let email: String
     let phoneNumber: String
+    var isFavourite: Bool = false
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case imageURLStrings
+        case description
+        case price
+        case roomsCount
+        case location
+        case ownerName
+        case email
+        case phoneNumber
+    }
     
     mutating func appendImagesUrls(urls: [String]) {
         imageURLStrings += urls

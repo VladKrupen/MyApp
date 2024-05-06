@@ -13,7 +13,8 @@ final class SearchViewController: UIViewController {
     
     lazy var model = SearchModel(searchViewController: self,
                                  advertismentGetter: firebaseAdvertismentManager,
-                                 advertismentLiker: firebaseAdvertismentManager)
+                                 advertismentLiker: firebaseAdvertismentManager,
+                                 advertismentFavouriteGetter: firebaseAdvertismentManager)
     
     private let firebaseAdvertismentManager = FirebaseAdvertismentManager()
     
@@ -68,7 +69,8 @@ final class SearchViewController: UIViewController {
     
     @objc private func createAdButtonTapped(_ sender: UIButton) {
         let adCreationViewController = AdvertismentCreationViewController()
-        navigationController?.pushViewController(adCreationViewController, animated: false)
+        navigationController?.pushViewController(adCreationViewController, animated: false
+        )
     }
 }
 
@@ -84,7 +86,7 @@ extension SearchViewController: UICollectionViewDataSource {
         advertismentCell.setupCell(advertisment: advertisment)
         
         advertismentCell.likeButtonPressed = { [weak self] likedAdvertisment in
-            self?.model.changeAdvertismentFavouriteState(with: likedAdvertisment.id)
+            self?.model.changeAdvertismentFavouriteState(with: likedAdvertisment)
         }
         return advertismentCell
     }
