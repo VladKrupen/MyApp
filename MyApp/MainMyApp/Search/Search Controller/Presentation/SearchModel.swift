@@ -5,7 +5,7 @@
 //  Created by Vlad on 27.04.24.
 //
 
-import UIKit
+import Foundation
 
 final class SearchModel {
     
@@ -22,10 +22,15 @@ final class SearchModel {
         self.advertismentLiker = advertismentLiker
     }
     
-    var like: Bool = true
+    var like: Bool = false 
     
     func changeLikeButton() {
         like.toggle()
+        if like {
+            searchViewController?.showAdvertismentSuccessfullyAddedToSaved()
+        } else {
+            searchViewController?.showAdSuccessfullyDeletedFromSaved()
+        }
     }
     
     func getAdvertisments() {
@@ -42,6 +47,7 @@ final class SearchModel {
     
     func changeAdvertismentFavouriteState(with id: String) {
         advertismentLiker.changeAdvertismentFavouriteState(with: id)
+        changeLikeButton()
     }
 }
 

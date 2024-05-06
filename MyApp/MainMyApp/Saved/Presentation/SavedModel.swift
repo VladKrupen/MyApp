@@ -37,4 +37,8 @@ final class SavedModel {
             }
         }
     }
+    func changeAdvertismentFavouriteState(with id: String) {
+        firebaseAdvertismentManager.changeAdvertismentFavouriteState(with: id)
+        savedController?.showDeletedSuccessfully()
+    }
 }

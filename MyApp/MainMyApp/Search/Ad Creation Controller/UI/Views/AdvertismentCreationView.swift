@@ -138,6 +138,14 @@ final class AdvertismentCreationView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    let spinerView: UIActivityIndicatorView = {
+        let spinerView = UIActivityIndicatorView(style: .large)
+        spinerView.translatesAutoresizingMaskIntoConstraints = false
+        spinerView.color = CustomColor.customBlue
+        spinerView.hidesWhenStopped = true
+        return spinerView
+    }()
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -164,6 +172,7 @@ final class AdvertismentCreationView: UIView {
         layoutStackDescriptionElements()
         layoutStackTextField()
         layoutPostAdButton()
+        laoyutSpinerView()
     }
     
     private func setupCollectionView() {
@@ -245,6 +254,14 @@ final class AdvertismentCreationView: UIView {
             postAdButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             postAdButton.widthAnchor.constraint(equalToConstant: 200),
             scrollView.bottomAnchor.constraint(equalTo: postAdButton.bottomAnchor, constant: 10)
+        ])
+    }
+    
+    private func laoyutSpinerView() {
+        addSubview(spinerView)
+        NSLayoutConstraint.activate([
+            spinerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinerView.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
     

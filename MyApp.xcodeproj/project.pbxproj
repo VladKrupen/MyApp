@@ -24,6 +24,8 @@
 		014E44EC2BE8BB3D00F650BE /* FirebaseImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44EB2BE8BB3D00F650BE /* FirebaseImageUploader.swift */; };
 		014E44EE2BE8BB8D00F650BE /* ImagesUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44ED2BE8BB8D00F650BE /* ImagesUploader.swift */; };
 		014E44F02BE8C9D900F650BE /* AdvertismentUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44EF2BE8C9D900F650BE /* AdvertismentUploader.swift */; };
+		014E44F32BE916DC00F650BE /* Splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 014E44F22BE916DC00F650BE /* Splash.json */; };
+		014E44FB2BE91AD400F650BE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 014E44FA2BE91AD400F650BE /* Lottie */; };
 		016F9DDE2BD6B44600DCC3AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */; };
 		016F9DE12BD6C87200DCC3AF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9DE02BD6C87200DCC3AF /* FirebaseAnalytics */; };
 		016F9DE32BD6C87200DCC3AF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9DE22BD6C87200DCC3AF /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -96,6 +98,7 @@
 		014E44EB2BE8BB3D00F650BE /* FirebaseImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageUploader.swift; sourceTree = "<group>"; };
 		014E44ED2BE8BB8D00F650BE /* ImagesUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesUploader.swift; sourceTree = "<group>"; };
 		014E44EF2BE8C9D900F650BE /* AdvertismentUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertismentUploader.swift; sourceTree = "<group>"; };
+		014E44F22BE916DC00F650BE /* Splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash.json; sourceTree = "<group>"; };
 		016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0199F9E42BDE886E00DD81FE /* AdertismentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdertismentViewController.swift; sourceTree = "<group>"; };
 		0199F9E62BDE8C9400DD81FE /* AdvertismentCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertismentCreationViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 				016F9E012BD6C87200DCC3AF /* FirebaseFunctionsCombine-Community in Frameworks */,
 				016F9DF92BD6C87200DCC3AF /* FirebaseFirestore in Frameworks */,
 				016F9DE52BD6C87200DCC3AF /* FirebaseAnalyticsSwift in Frameworks */,
+				014E44FB2BE91AD400F650BE /* Lottie in Frameworks */,
 				016F9DE12BD6C87200DCC3AF /* FirebaseAnalytics in Frameworks */,
 				016F9DE32BD6C87200DCC3AF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				016F9E092BD6C87200DCC3AF /* FirebaseMLModelDownloader in Frameworks */,
@@ -555,6 +559,7 @@
 			children = (
 				01B7D9A82BD54EFF00CB8462 /* Assets.xcassets */,
 				01B7D9AA2BD54EFF00CB8462 /* LaunchScreen.storyboard */,
+				014E44F22BE916DC00F650BE /* Splash.json */,
 				01B7D9AD2BD54EFF00CB8462 /* Info.plist */,
 				016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */,
 			);
@@ -647,6 +652,7 @@
 				016F9E142BD6C87200DCC3AF /* FirebaseStorageCombine-Community */,
 				014E44CA2BE6AAFE00F650BE /* SDWebImage */,
 				014E44CC2BE6AAFE00F650BE /* SDWebImageMapKit */,
+				014E44FA2BE91AD400F650BE /* Lottie */,
 			);
 			productName = MyApp;
 			productReference = 01B7D99C2BD54EFD00CB8462 /* MyApp.app */;
@@ -679,6 +685,7 @@
 			packageReferences = (
 				016F9DDF2BD6C87200DCC3AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				014E44C92BE6AAFE00F650BE /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				014E44F92BE91AD400F650BE /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 01B7D99D2BD54EFD00CB8462 /* Products */;
 			projectDirPath = "";
@@ -696,6 +703,7 @@
 			files = (
 				01B7D9A92BD54EFF00CB8462 /* Assets.xcassets in Resources */,
 				01B7D9AC2BD54EFF00CB8462 /* Base in Resources */,
+				014E44F32BE916DC00F650BE /* Splash.json in Resources */,
 				016F9DDE2BD6B44600DCC3AF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -968,6 +976,14 @@
 				minimumVersion = 5.19.1;
 			};
 		};
+		014E44F92BE91AD400F650BE /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
 		016F9DDF2BD6C87200DCC3AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -988,6 +1004,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 014E44C92BE6AAFE00F650BE /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImageMapKit;
+		};
+		014E44FA2BE91AD400F650BE /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 014E44F92BE91AD400F650BE /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		016F9DE02BD6C87200DCC3AF /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

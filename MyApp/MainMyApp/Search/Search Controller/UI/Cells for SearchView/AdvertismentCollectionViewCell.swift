@@ -102,6 +102,14 @@ final class AdvertismentCollectionViewCell: UICollectionViewCell {
         setupPageControl(advertisment: advertisment)
     }
     
+    func isLikeButtonTrue() {
+        likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+    }
+    
+    func isLikeButtonFalse() {
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+    }
+    
     private func setupImages(advertisment: Advertisment) {
         imagesStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for imageURLString in advertisment.imageURLStrings {

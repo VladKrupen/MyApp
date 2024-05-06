@@ -23,7 +23,7 @@ final class AdvertismentCreationModel {
     }
     
     func createAdvertisment(advertisment: Advertisment) {
-        
+        adCreationViewController?.showSpiner()
         let unwrappedImagesData = selectedImagesData.compactMap { $0 }
         imagesUploader.uploadImages(id: advertisment.id, imagesData: unwrappedImagesData) { [weak self] result in
             switch result {
@@ -31,6 +31,8 @@ final class AdvertismentCreationModel {
                 var newAdvertisment = advertisment
                 newAdvertisment.appendImagesUrls(urls: imagesURLs)
                 self?.uploadAdvertisment(advertisment: newAdvertisment)
+                self?.adCreationViewController?.hideSpiner()
+                self?.adCreationViewController?.showSuccessedAdvertismentCreation()
             case .failure(let error):
                 print(error)
             }

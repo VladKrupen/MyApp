@@ -41,6 +41,25 @@ final class AdvertismentCreationViewController: UIViewController {
         adCreationView.selectionImages = images
     }
     
+    func showSpiner() {
+        adCreationView.spinerView.startAnimating()
+    }
+    
+    func hideSpiner() {
+        adCreationView.spinerView.stopAnimating()
+    }
+    
+    func showSuccessedAdvertismentCreation() {
+        let alertController = UIAlertController(title: "Обявление добавлено", message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Хорошо", style: .default) { [weak self ] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        alertController.addAction(okAction)
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alertController, animated: false)
+        }
+    }
+    
     private func setupNavigationItem() {
         navigationItem.title = "Подача объявления"
     }

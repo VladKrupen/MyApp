@@ -57,27 +57,32 @@ final class FirebaseAdvertismentManager: AdvertismentsGetter, AdvertismentLiker,
         guard let userId = auth.currentUser?.uid else {
             let error = NSError(domain: "Can't get user id", code: 401)
             completion(.failure(error))
-            return }
+            return
+        }
         
         database.collection(Constants.userDocName).document(userId).getDocument { snapsot, error in
             guard error == nil else {
                 completion(.failure(error!))
-                return }
+                return
+            }
             
             guard let userJSON = snapsot?.data() else {
                 let error = NSError(domain: "Can't get user JSON", code: 401)
                 completion(.failure(error))
-                return }
+                return
+            }
             
             guard let userData = try? JSONSerialization.data(withJSONObject: userJSON) else {
                 let error = NSError(domain: "Can't get user data", code: 401)
                 completion(.failure(error))
-                return }
+                return
+            }
             
             guard let user = try? JSONDecoder().decode(User.self, from: userData) else {
                 let error = NSError(domain: "Can't parse user", code: 401)
                 completion(.failure(error))
-                return }
+                return
+            }
             
             let favouriteAdvertisments = user.favouritesAdvertisments
             completion(.success(favouriteAdvertisments))
@@ -116,7 +121,8 @@ final class FirebaseAdvertismentManager: AdvertismentsGetter, AdvertismentLiker,
         guard let userId = auth.currentUser?.uid else {
             let error = NSError(domain: "Can't get user id", code: 401)
             completion(error)
-            return }
+            return
+        }
         
         let ref = database.collection(Constants.advertismentsDocName).document(advertisment.id)
         

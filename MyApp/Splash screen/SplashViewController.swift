@@ -6,51 +6,38 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import Lottie
 
 final class SplashViewController: UIViewController {
     
-    private let activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.backgroundColor = UIColor(white: 0, alpha: 0.4)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        return activityIndicator
-    }()
+    let lottieAnimation = LottieAnimationView(name: "Splash")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layoutElements()
+        setupAnimation()
         makeInquiries()
     }
     
-    private func layoutElements() {
-        layoutActivityIndicator()
-    }
-    
-    private func layoutActivityIndicator() {
-        view.addSubview(activityIndicator)
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.topAnchor.constraint(equalTo: view.topAnchor),
-            activityIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+    private func setupAnimation() {
+        view.addSubview(lottieAnimation)
+        lottieAnimation.frame = view.frame
+        lottieAnimation.contentMode = .scaleAspectFit
+        lottieAnimation.animationSpeed = 1
+        lottieAnimation.loopMode = .loop
     }
     
     private func makeInquiries() {
-        activityIndicator.startAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.activityIndicator.stopAnimating()
-            Auth.auth().addStateDidChangeListener { auth, user in
+        lottieAnimation.play()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            Auth.auth().addStateDidChangeListener { [weak self] auth, user in
                 if user == nil {
                     SceneDelegate.shared.rootViewController.switchToScreen(viewController: AuthorizationViewController())
                 } else {
                     SceneDelegate.shared.rootViewController.switchToScreen(viewController: MainTabBarController())
                 }
             }
+            self.lottieAnimation.stop()
         }
     }
-    
 }

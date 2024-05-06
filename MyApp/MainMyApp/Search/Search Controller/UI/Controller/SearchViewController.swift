@@ -32,6 +32,28 @@ final class SearchViewController: UIViewController {
         model.getAdvertisments()
     }
     
+    func showAdvertismentSuccessfullyAddedToSaved() {
+        let alertController = UIAlertController(title: "Обявление добавлено в сохраненное", message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Хорошо", style: .default) { [weak self ] _ in
+            
+        }
+        alertController.addAction(okAction)
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alertController, animated: false)
+        }
+    }
+    
+    func showAdSuccessfullyDeletedFromSaved() {
+        let alertController = UIAlertController(title: "Обявление удаленно из сохраненного", message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Хорошо", style: .default) { [weak self ] _ in
+            
+        }
+        alertController.addAction(okAction)
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alertController, animated: false)
+        }
+    }
+    
     private func setupDelegates() {
         contentView.collectionView.dataSource = self
         contentView.collectionView.delegate = self

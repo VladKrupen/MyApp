@@ -23,7 +23,6 @@ final class SavedViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationItem()
         setupDelegates()
-        model.getFavouriteAdvertisment()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +38,17 @@ final class SavedViewController: UIViewController {
     private func setupNavigationItem() {
         navigationItem.title = "Сохраненное"
     }
+    
+    func showDeletedSuccessfully() {
+        let alertController = UIAlertController(title: "Удалено из сохраненного", message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Хорошо", style: .default) { [weak self ] _ in
+            self?.searchView.collectionView.reloadData()
+        }
+        alertController.addAction(okAction)
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alertController, animated: false)
+        }
+    }
 }
 
 extension SavedViewController: UICollectionViewDataSource {
@@ -53,7 +63,8 @@ extension SavedViewController: UICollectionViewDataSource {
         advertismentCell.setupCell(advertisment: advertisment)
         
         advertismentCell.likeButtonPressed = { [weak self] likedAdvertisment in
-            
+            self?.model.changeAdvertismentFavouriteState(with: likedAdvertisment.id)
+            self?.model.getFavouriteAdvertisment()
         }
         return advertismentCell
     }
