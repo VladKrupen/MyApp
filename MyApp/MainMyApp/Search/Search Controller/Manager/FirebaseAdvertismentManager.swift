@@ -36,18 +36,19 @@ final class FirebaseAdvertismentManager: AdvertismentsGetter, AdvertismentLiker,
         }
     }
     
-    func changeAdvertismentFavouriteState(with id: String) {
+    func changeAdvertismentFavouriteState(with id: String, completion: @escaping () -> Void) {
         getFavouriteAdvertismentsId { [weak self] result in
             switch result {
             case .success(let favouriteAdvertismentsIds):
                 let isAdvertismentFavourite = favouriteAdvertismentsIds.contains(id)
                 switch isAdvertismentFavourite {
                 case true:
-                    self?.removeAdvertismentFromFavourite(with: id)
+                    self?.removeAdvertismentFromFavourite(with: id, completion: completion)
                 case false:
-                    self?.addAdvertismentToFavourite(with: id)
+                    self?.addAdvertismentToFavourite(with: id, completion: completion)
                 }
             case .failure(let error):
+                completion()
                 print(error)
             }
         }
@@ -134,16 +135,19 @@ final class FirebaseAdvertismentManager: AdvertismentsGetter, AdvertismentLiker,
         }
     }
     
-    private func addAdvertismentToFavourite(with id: String) {
+    private func addAdvertismentToFavourite(with id: String, completion: @escaping () -> Void) {
         guard let userId = auth.currentUser?.uid else { return }
         let ref = database.collection(Constants.userDocName).document(userId)
-        ref.updateData(["favouritesAdvertisments": FieldValue.arrayUnion([id])])
-        
+        ref.updateData(["favouritesAdvertisments": FieldValue.arrayUnion([id])]) { _ in
+            completion()
+        }
     }
     
-    private func removeAdvertismentFromFavourite(with id: String) {
+    private func removeAdvertismentFromFavourite(with id: String, completion: @escaping () -> Void) {
         guard let userId = auth.currentUser?.uid else { return }
         let ref = database.collection(Constants.userDocName).document(userId)
-        ref.updateData(["favouritesAdvertisments": FieldValue.arrayRemove([id])])
+        ref.updateData(["favouritesAdvertisments": FieldValue.arrayRemove([id])]) { _ in
+            completion()
+        }
     }
 }

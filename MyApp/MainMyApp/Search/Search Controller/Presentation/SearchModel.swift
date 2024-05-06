@@ -46,8 +46,9 @@ final class SearchModel {
     }
     
     func changeAdvertismentFavouriteState(with id: String) {
-        advertismentLiker.changeAdvertismentFavouriteState(with: id)
-        changeLikeButton()
+        advertismentLiker.changeAdvertismentFavouriteState(with: id) { [weak self] in
+            self?.changeLikeButton()
+        }
     }
 }
 

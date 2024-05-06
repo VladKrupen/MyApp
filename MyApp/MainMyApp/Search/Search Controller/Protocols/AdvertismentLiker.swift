@@ -8,5 +8,5 @@
 import Foundation
 
 protocol AdvertismentLiker {
-    func changeAdvertismentFavouriteState(with id: String)
+    func changeAdvertismentFavouriteState(with id: String, completion: @escaping () -> Void)
 }

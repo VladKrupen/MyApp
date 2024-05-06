@@ -65,6 +65,7 @@ extension SavedViewController: UICollectionViewDataSource {
         advertismentCell.likeButtonPressed = { [weak self] likedAdvertisment in
             self?.model.changeAdvertismentFavouriteState(with: likedAdvertisment.id)
             self?.model.getFavouriteAdvertisment()
+            self?.searchView.collectionView.reloadData()
         }
         return advertismentCell
     }

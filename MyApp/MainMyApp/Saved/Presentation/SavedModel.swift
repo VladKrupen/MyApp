@@ -22,8 +22,8 @@ final class SavedModel {
     func getFavouriteAdvertisment() {
         firebaseAdvertismentManager.getFavouriteAdvertismentsId { [weak self] result in
             switch result {
-            case .success(let result):
-                self?.firebaseAdvertismentManager.getFavouriteAdvertisments(favouritesAdventimentsId: result) { result in
+            case .success(let favouritesId):
+                self?.firebaseAdvertismentManager.getFavouriteAdvertisments(favouritesAdventimentsId: favouritesId) { result in
                     switch result {
                     case .success(let advertisment):
                         self?.displayedFavouritesAdvertisments = advertisment
@@ -37,8 +37,11 @@ final class SavedModel {
             }
         }
     }
+    
     func changeAdvertismentFavouriteState(with id: String) {
-        firebaseAdvertismentManager.changeAdvertismentFavouriteState(with: id)
-        savedController?.showDeletedSuccessfully()
+        firebaseAdvertismentManager.changeAdvertismentFavouriteState(with: id) { [weak self] in
+            self?.getFavouriteAdvertisment()
+            self?.savedController?.showDeletedSuccessfully()
+        }
     }
 }
