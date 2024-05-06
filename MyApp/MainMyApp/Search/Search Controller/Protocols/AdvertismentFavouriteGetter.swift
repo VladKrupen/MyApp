@@ -8,5 +8,6 @@
 import Foundation
 
 protocol AdvertismentFavouriteGetter {
-    func getFavouriteAdvertisments(completion: @escaping (Result<[String], Error>) -> Void)
+    func getFavouriteAdvertismentsId(completion: @escaping (Result<[String], Error>) -> Void)
+    func getFavouriteAdvertisments(favouritesAdventimentsId: [String] ,completion: @escaping (Result<[Advertisment], Error>) -> Void)
 }

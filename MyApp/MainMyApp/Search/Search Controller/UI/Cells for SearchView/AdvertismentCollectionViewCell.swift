@@ -103,6 +103,7 @@ final class AdvertismentCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupImages(advertisment: Advertisment) {
+        imagesStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for imageURLString in advertisment.imageURLStrings {
             let imageURL = URL(string: imageURLString)
             let imageView = createImageView()

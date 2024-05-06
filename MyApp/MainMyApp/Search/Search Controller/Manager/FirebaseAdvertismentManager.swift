@@ -37,7 +37,7 @@ final class FirebaseAdvertismentManager: AdvertismentsGetter, AdvertismentLiker,
     }
     
     func changeAdvertismentFavouriteState(with id: String) {
-        getFavouriteAdvertisments { [weak self] result in
+        getFavouriteAdvertismentsId { [weak self] result in
             switch result {
             case .success(let favouriteAdvertismentsIds):
                 let isAdvertismentFavourite = favouriteAdvertismentsIds.contains(id)
@@ -53,7 +53,7 @@ final class FirebaseAdvertismentManager: AdvertismentsGetter, AdvertismentLiker,
         }
     }
     
-    func getFavouriteAdvertisments(completion: @escaping (Result<[String], any Error>) -> Void) {
+    func getFavouriteAdvertismentsId(completion: @escaping (Result<[String], any Error>) -> Void) {
         guard let userId = auth.currentUser?.uid else {
             let error = NSError(domain: "Can't get user id", code: 401)
             completion(.failure(error))
@@ -83,6 +83,34 @@ final class FirebaseAdvertismentManager: AdvertismentsGetter, AdvertismentLiker,
             completion(.success(favouriteAdvertisments))
         }
     }
+    
+    func getFavouriteAdvertisments(favouritesAdventimentsId: [String], completion: @escaping (Result<[Advertisment], any Error>) -> Void) {
+        database.collection(Constants.advertismentsDocName).getDocuments { snapshot, error in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            guard let documents = snapshot?.documents else {
+                let error = NSError(domain: "Can't get snapshot", code: 401)
+                return
+            }
+            guard let documentsFilter = snapshot?.documents.filter({ favouritesAdventimentsId.contains($0.documentID) }) else {
+                let error = NSError(domain: "Сan't filter", code: 401)
+                completion(.failure(error))
+                return
+            }
+            let documentsData = documentsFilter.map { $0.data() }
+            let advertisments: [Advertisment?] = documentsData.map { documentJSON in
+                let advertismentData = try? JSONSerialization.data(withJSONObject: documentJSON)
+                guard let advertismentData else { return nil }
+                let advertisment = try? JSONDecoder().decode(Advertisment.self, from: advertismentData)
+                return advertisment
+            }
+            let unwrappedAdvertisments = advertisments.compactMap { $0 }
+            completion(.success(unwrappedAdvertisments))
+        }
+    }
+    
     
     func uploadAdvertisment(advertisment: Advertisment, completion: @escaping ((any Error)?) -> Void) {
         guard let userId = auth.currentUser?.uid else {
