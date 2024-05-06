@@ -18,30 +18,30 @@ class SavedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDelegates()
+//        setupDelegates()
         setupNavigationItem()
     }
     
-    private func setupDelegates() {
-        searchView.collectionView.dataSource = self
-        searchView.collectionView.delegate = self
-    }
+//    private func setupDelegates() {
+//        searchView.collectionView.dataSource = self
+//        searchView.collectionView.delegate = self
+//    }
     
     private func setupNavigationItem() {
         navigationItem.title = "Сохраненное"
     }
 }
 
-extension SavedViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
-    }
-}
+//extension SavedViewController: UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
+//}
 
-extension SavedViewController: UICollectionViewDelegate {
-    
-}
+//extension SavedViewController: UICollectionViewDelegate {
+//    
+//}

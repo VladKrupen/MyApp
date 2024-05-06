@@ -9,7 +9,7 @@ import Foundation
 
 struct Advertisment: Codable {
     let id: String
-    let imageURLStrings: [String]
+    var imageURLStrings: [String]
     let description: String
     let price: Double
     let roomsCount: Double
@@ -17,4 +17,8 @@ struct Advertisment: Codable {
     let ownerName: String
     let email: String
     let phoneNumber: String
+    
+    mutating func appendImagesUrls(urls: [String]) {
+        imageURLStrings += urls
+    }
 }

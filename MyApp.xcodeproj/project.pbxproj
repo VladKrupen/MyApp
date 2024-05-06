@@ -20,9 +20,10 @@
 		014E44CB2BE6AAFE00F650BE /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 014E44CA2BE6AAFE00F650BE /* SDWebImage */; };
 		014E44CD2BE6AAFE00F650BE /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 014E44CC2BE6AAFE00F650BE /* SDWebImageMapKit */; };
 		014E44DB2BE6C6EA00F650BE /* UserGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44DA2BE6C6EA00F650BE /* UserGetter.swift */; };
-		014E44DF2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44DE2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift */; };
-		014E44E12BE759A900F650BE /* ImageToLinkConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44E02BE759A900F650BE /* ImageToLinkConverter.swift */; };
 		014E44EA2BE7FA9000F650BE /* SavedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44E92BE7FA9000F650BE /* SavedModel.swift */; };
+		014E44EC2BE8BB3D00F650BE /* FirebaseImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44EB2BE8BB3D00F650BE /* FirebaseImageUploader.swift */; };
+		014E44EE2BE8BB8D00F650BE /* ImagesUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44ED2BE8BB8D00F650BE /* ImagesUploader.swift */; };
+		014E44F02BE8C9D900F650BE /* AdvertismentUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E44EF2BE8C9D900F650BE /* AdvertismentUploader.swift */; };
 		016F9DDE2BD6B44600DCC3AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */; };
 		016F9DE12BD6C87200DCC3AF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9DE02BD6C87200DCC3AF /* FirebaseAnalytics */; };
 		016F9DE32BD6C87200DCC3AF /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 016F9DE22BD6C87200DCC3AF /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -91,9 +92,10 @@
 		014E44C42BE69C4900F650BE /* FirebaseAdvertismentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAdvertismentManager.swift; sourceTree = "<group>"; };
 		014E44C72BE69CDF00F650BE /* Advertisment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertisment.swift; sourceTree = "<group>"; };
 		014E44DA2BE6C6EA00F650BE /* UserGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetter.swift; sourceTree = "<group>"; };
-		014E44DE2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAdvertismentCreationManager.swift; sourceTree = "<group>"; };
-		014E44E02BE759A900F650BE /* ImageToLinkConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToLinkConverter.swift; sourceTree = "<group>"; };
 		014E44E92BE7FA9000F650BE /* SavedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedModel.swift; sourceTree = "<group>"; };
+		014E44EB2BE8BB3D00F650BE /* FirebaseImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageUploader.swift; sourceTree = "<group>"; };
+		014E44ED2BE8BB8D00F650BE /* ImagesUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesUploader.swift; sourceTree = "<group>"; };
+		014E44EF2BE8C9D900F650BE /* AdvertismentUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertismentUploader.swift; sourceTree = "<group>"; };
 		016F9DDD2BD6B44600DCC3AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0199F9E42BDE886E00DD81FE /* AdertismentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdertismentViewController.swift; sourceTree = "<group>"; };
 		0199F9E62BDE8C9400DD81FE /* AdvertismentCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertismentCreationViewController.swift; sourceTree = "<group>"; };
@@ -394,7 +396,8 @@
 		014E44DC2BE7589B00F650BE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				014E44E02BE759A900F650BE /* ImageToLinkConverter.swift */,
+				014E44ED2BE8BB8D00F650BE /* ImagesUploader.swift */,
+				014E44EF2BE8C9D900F650BE /* AdvertismentUploader.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -402,7 +405,7 @@
 		014E44DD2BE758A400F650BE /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				014E44DE2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift */,
+				014E44EB2BE8BB3D00F650BE /* FirebaseImageUploader.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -715,7 +718,6 @@
 				01B7D9A02BD54EFD00CB8462 /* AppDelegate.swift in Sources */,
 				014E44C32BE69C3400F650BE /* AdvertismentFavouriteGetter.swift in Sources */,
 				014E44BF2BE69BD100F650BE /* AdvertismentsGetter.swift in Sources */,
-				014E44DF2BE7593300F650BE /* FirebaseAdvertismentCreationManager.swift in Sources */,
 				014E44B42BE6904100F650BE /* User.swift in Sources */,
 				014E44B72BE6914300F650BE /* Constants.swift in Sources */,
 				01B7D9C02BD5572300CB8462 /* MainTabBarController.swift in Sources */,
@@ -724,18 +726,20 @@
 				01B7D9A22BD54EFD00CB8462 /* SceneDelegate.swift in Sources */,
 				01AF429D2BD832340010C917 /* ProfileViewController.swift in Sources */,
 				014E44AE2BE68DE600F650BE /* UserCreator.swift in Sources */,
+				014E44EE2BE8BB8D00F650BE /* ImagesUploader.swift in Sources */,
 				01AF42A12BD96CD60010C917 /* SavedViewController.swift in Sources */,
 				014E44C12BE69C1B00F650BE /* AdvertismentLiker.swift in Sources */,
 				01B7D9BD2BD5563A00CB8462 /* AuthorizationViewController.swift in Sources */,
 				01FCA7952BE3F0EE0093939C /* ProfileView.swift in Sources */,
+				014E44F02BE8C9D900F650BE /* AdvertismentUploader.swift in Sources */,
 				01A9E1322BE239080088E58E /* AdvertismentView.swift in Sources */,
 				014E44C52BE69C4900F650BE /* FirebaseAdvertismentManager.swift in Sources */,
 				01A66E2C2BDD62F6000A4A09 /* SearchModel.swift in Sources */,
+				014E44EC2BE8BB3D00F650BE /* FirebaseImageUploader.swift in Sources */,
 				01B7DA052BD5AE7300CB8462 /* AuthorizationModel.swift in Sources */,
 				01A66E242BDD4407000A4A09 /* SearchView.swift in Sources */,
 				0199F9E72BDE8C9400DD81FE /* AdvertismentCreationViewController.swift in Sources */,
 				01B7DA032BD5A89800CB8462 /* AuthorizantionView.swift in Sources */,
-				014E44E12BE759A900F650BE /* ImageToLinkConverter.swift in Sources */,
 				01A66E282BDD55C5000A4A09 /* AdvertismentCollectionViewCell.swift in Sources */,
 				0199F9E52BDE886E00DD81FE /* AdertismentViewController.swift in Sources */,
 				01B7D9BA2BD5538200CB8462 /* SplashViewController.swift in Sources */,

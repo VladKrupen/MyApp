@@ -12,8 +12,6 @@ final class ProfileModel {
     
     weak var profileViewController: ProfileViewController?
     
-//    var currentUser: User?
-    
     private let userGetter: UserGetter
     
     init(profileViewController: ProfileViewController?, userGetter: UserGetter) {

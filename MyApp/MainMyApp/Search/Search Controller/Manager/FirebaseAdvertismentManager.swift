@@ -9,8 +9,8 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-final class FirebaseAdvertismentManager: AdvertismentsGetter, AdvertismentLiker, AdvertismentFavouriteGetter {
- 
+final class FirebaseAdvertismentManager: AdvertismentsGetter, AdvertismentLiker, AdvertismentFavouriteGetter, AdvertismentUploader {
+  
     private let database = Firestore.firestore()
     private let auth = Auth.auth()
     
@@ -81,6 +81,22 @@ final class FirebaseAdvertismentManager: AdvertismentsGetter, AdvertismentLiker,
             
             let favouriteAdvertisments = user.favouritesAdvertisments
             completion(.success(favouriteAdvertisments))
+        }
+    }
+    
+    func uploadAdvertisment(advertisment: Advertisment, completion: @escaping ((any Error)?) -> Void) {
+        guard let userId = auth.currentUser?.uid else {
+            let error = NSError(domain: "Can't get user id", code: 401)
+            completion(error)
+            return }
+        
+        let ref = database.collection(Constants.advertismentsDocName).document(advertisment.id)
+        
+        do {
+            try ref.setData(from: advertisment)
+            completion(nil)
+        } catch {
+            completion(error)
         }
     }
     

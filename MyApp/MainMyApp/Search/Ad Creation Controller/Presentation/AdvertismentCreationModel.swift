@@ -10,29 +10,40 @@ import UIKit
 
 final class AdvertismentCreationModel {
     
-    weak private var adCreationViewController: AdvertismentCreationViewController?
+    var selectedImagesData: [Data?] = []
     
-    let imageToStringConverter: ImageToStringConverter
+    weak private var adCreationViewController: AdvertismentCreationViewController?
+    private let imagesUploader: ImagesUploader
+    private let advertismentUploader: AdvertismentUploader
    
-    init(adCreationViewController: AdvertismentCreationViewController?, imageToStringConverter: ImageToStringConverter) {
+    init(adCreationViewController: AdvertismentCreationViewController?, imagesUploader: ImagesUploader, advertismentUploader: AdvertismentUploader) {
         self.adCreationViewController = adCreationViewController
-        self.imageToStringConverter = imageToStringConverter
+        self.imagesUploader = imagesUploader
+        self.advertismentUploader = advertismentUploader
     }
     
-    
-    func convertImagesToStrings(images: UIImage) -> String {
-        var string: String = ""
-        imageToStringConverter.convertImagesToStrings(image: images) { result in
+    func createAdvertisment(advertisment: Advertisment) {
+        
+        let unwrappedImagesData = selectedImagesData.compactMap { $0 }
+        imagesUploader.uploadImages(id: advertisment.id, imagesData: unwrappedImagesData) { [weak self] result in
             switch result {
-            case .success(let strings):
-                string = strings
+            case .success(let imagesURLs):
+                var newAdvertisment = advertisment
+                newAdvertisment.appendImagesUrls(urls: imagesURLs)
+                self?.uploadAdvertisment(advertisment: newAdvertisment)
             case .failure(let error):
                 print(error)
             }
         }
-        return string
     }
     
-    var selectionImages: [UIImage] = []
+    private func uploadAdvertisment(advertisment: Advertisment) {
+        advertismentUploader.uploadAdvertisment(advertisment: advertisment) { [weak self] error in
+            guard error == nil else {
+                
+                return
+            }
+        }
+    }
     
 }

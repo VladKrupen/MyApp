@@ -9,7 +9,7 @@ import UIKit
 
 final class AdvertismentCreationView: UIView {
     
-    var closurePostAdButton: ((String, String, String, String, String, String, String) -> Void)?
+    var closurePostAdButton: ((String, Double, Double, String, String, String, String) -> Void)?
     
     var closureImageViewTapped: (() -> Void)?
     
@@ -256,7 +256,7 @@ final class AdvertismentCreationView: UIView {
            let name = nameField.text,
            let email = emailField.text,
            let number = numberField.text {
-            closurePostAdButton?(description, price, numberOfRooms, geolocation, name, email, number)
+            closurePostAdButton?(description, Double(price) ?? 0.0, Double(numberOfRooms) ?? 0.0, geolocation, name, email, number)
         }
     }
     

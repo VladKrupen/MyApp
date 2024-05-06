@@ -91,6 +91,7 @@ final class AdvertismentCollectionViewCell: UICollectionViewCell {
     }
     
     func setupCell(advertisment: Advertisment) {
+        
         currentAdvertisment = advertisment
         
         numberOfRoomsLabel.text = "Комнат: " + "\(advertisment.roomsCount)"

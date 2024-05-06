@@ -12,11 +12,10 @@ final class AdvertismentCreationViewController: UIViewController {
     
     var imageStrings: [String] = []
     
-    let firebaseAdvertismentCreationManager = FirebaseAdvertismentCreationManager()
+    private let firebaseImageUploader = FirebaseImageUploader()
+    private let advertismentManager = FirebaseAdvertismentManager()
     
-//    lazy var model = AdvertismentCreationModel(adCreationViewController: self, imageToLinkConverter: firebaseAdvertismentCreationManager)
-    lazy var model = AdvertismentCreationModel(adCreationViewController: self, firebaseManager: firebaseAdvertismentCreationManager)
-    
+    private lazy var model = AdvertismentCreationModel(adCreationViewController: self, imagesUploader: firebaseImageUploader, advertismentUploader: advertismentManager)
     private let adCreationView = AdvertismentCreationView()
     
     lazy var pickerViewController: PHPickerViewController = {
@@ -56,6 +55,16 @@ final class AdvertismentCreationViewController: UIViewController {
     
     private func postAdButtonTapped() {
         adCreationView.closurePostAdButton = { [weak self] description, price, numberOfRooms, geolocation, name, email, number in
+            let emptyImageAdvertisment = Advertisment(id: UUID().uuidString,
+                                                      imageURLStrings: [],
+                                                      description: description,
+                                                      price: price,
+                                                      roomsCount: numberOfRooms,
+                                                      location: geolocation,
+                                                      ownerName: name,
+                                                      email: email,
+                                                      phoneNumber: number)
+            self?.model.createAdvertisment(advertisment: emptyImageAdvertisment)
         }
     }
 }
@@ -68,9 +77,8 @@ extension AdvertismentCreationViewController: PHPickerViewControllerDelegate {
             item.loadObject(ofClass: UIImage.self) { image, error in
                 DispatchQueue.main.async {
                     if let image = image as? UIImage {
-                        self.imageStrings.append(self.model.convertImagesToStrings(images: image))
-                        self.model.selectionImages.append(image)
-                        self.addImages(images: self.model.selectionImages)
+                        self.adCreationView.selectionImages.append(image)
+                        self.model.selectedImagesData.append(image.jpegData(compressionQuality: 1))
                         self.adCreationView.collectionView.reloadData()
                     }
                 }
