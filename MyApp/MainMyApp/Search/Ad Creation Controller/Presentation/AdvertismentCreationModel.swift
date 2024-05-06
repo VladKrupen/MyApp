@@ -30,21 +30,37 @@ final class AdvertismentCreationModel {
             case .success(let imagesURLs):
                 var newAdvertisment = advertisment
                 newAdvertisment.appendImagesUrls(urls: imagesURLs)
-                self?.uploadAdvertisment(advertisment: newAdvertisment)
-                self?.adCreationViewController?.hideSpiner()
-                self?.adCreationViewController?.showSuccessedAdvertismentCreation()
+                self?.checkingForEmptiness(for: newAdvertisment)
             case .failure(let error):
                 print(error)
             }
         }
     }
     
+    private func checkingForEmptiness(for advertisment: Advertisment) {
+        guard !advertisment.imageURLStrings.isEmpty,
+              !advertisment.description.isEmpty,
+              advertisment.price != 0.0,
+              advertisment.roomsCount != 0.0,
+              !advertisment.location.isEmpty,
+              !advertisment.ownerName.isEmpty,
+              !advertisment.email.isEmpty,
+              !advertisment.phoneNumber.isEmpty else {
+            self.adCreationViewController?.hideSpiner()
+            self.adCreationViewController?.showAnnouncementAboutAddingData()
+            return
+        }
+        self.uploadAdvertisment(advertisment: advertisment)
+    }
+    
     private func uploadAdvertisment(advertisment: Advertisment) {
         advertismentUploader.uploadAdvertisment(advertisment: advertisment) { [weak self] error in
             guard error == nil else {
-                
+                self?.adCreationViewController?.showFailedToLoadAdvertisment()
                 return
             }
+            self?.adCreationViewController?.hideSpiner()
+            self?.adCreationViewController?.showSuccessedAdvertismentCreation()
         }
     }
 }

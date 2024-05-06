@@ -60,6 +60,27 @@ final class AdvertismentCreationViewController: UIViewController {
         }
     }
     
+    func showAnnouncementAboutAddingData() {
+        let alertController = UIAlertController(title: "Заполните все поля и добавьте фотографии", message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Хорошо", style: .default) { [weak self ] _ in
+        }
+        alertController.addAction(okAction)
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alertController, animated: false)
+        }
+    }
+    
+    func showFailedToLoadAdvertisment() {
+        let alertController = UIAlertController(title: "Не удалось загрузить объявление, попробуйте позже", message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Хорошо", style: .default) { [weak self ] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        alertController.addAction(okAction)
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alertController, animated: false)
+        }
+    }
+    
     private func setupNavigationItem() {
         navigationItem.title = "Подача объявления"
     }
